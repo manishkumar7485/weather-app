@@ -1,58 +1,63 @@
 .app {
   width: 100%;
   max-width: 1200px;
+  min-width: 320px; /* Minimum mobile width */
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .container {
+  width: 100%;
+  min-width: 320px; /* Prevent container from shrinking */
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .app-title {
   text-align: center;
-  color: white;
-  font-size: 2.5rem;
+  color: #fff;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 700;
   margin-bottom: 2rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.location-notice,
+.location-success,
+.error-message {
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
 .location-notice {
   background: rgba(255, 193, 7, 0.1);
   border: 1px solid rgba(255, 193, 7, 0.3);
-  color:rgb(5, 206, 136);
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  margin: 1rem 0;
-  font-weight: 500;
+  color: rgb(9, 241, 160);
 }
 
 .location-success {
   background: rgba(40, 167, 69, 0.1);
   border: 1px solid rgba(40, 167, 69, 0.3);
-  color: #28a745;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  margin: 1rem 0;
-  font-weight: 500;
+  color: #0ffc46;
+  font-weight: 900;
 }
 
 .error-message {
   background: rgba(255, 0, 0, 0.1);
   border: 1px solid rgba(255, 0, 0, 0.3);
-  color: #ff6b6b;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  margin: 1rem 0;
-  font-weight: 500;
+  color: #f52424;
 }
 
 .loading {
@@ -61,31 +66,105 @@
   align-items: center;
   justify-content: center;
   padding: 3rem;
-  color: white;
+  color: #fff;
+  text-align: center;
 }
 
 .spinner {
   width: 40px;
   height: 40px;
   border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border-top: 4px solid #fff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+/* =========================
+   Tablet
+========================= */
+
 @media (max-width: 768px) {
+  .app {
+    padding: 0 12px;
+  }
+
   .container {
     padding: 1.5rem;
-    margin: 1rem;
+    border-radius: 16px;
   }
-  
-  .app-title {
-    font-size: 2rem;
+
+  .location-notice,
+  .location-success,
+  .error-message {
+    font-size: 15px;
+  }
+
+  .spinner {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0 10px;
+  }
+
+  .container {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .location-notice,
+  .location-success,
+  .error-message {
+    padding: 0.8rem;
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+}
+
+/* =========================
+   Minimum Mobile Width
+   Stops further shrinking
+========================= */
+
+@media (max-width: 320px) {
+  html,
+  body {
+    min-width: 320px;
+    overflow-x: auto;
+  }
+
+  .app,
+  .container {
+    min-width: 320px;
+  }
+
+  .container {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .location-notice,
+  .location-success,
+  .error-message {
+    font-size: 13px;
   }
 }

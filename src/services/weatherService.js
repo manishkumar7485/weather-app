@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'de72f0371e1ba6d27c8594a593f7185d'; // Your API key
+const API_KEY = '1bc5d446b342dce8d4069504af326b92'; // Your API key
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 export const getWeatherData = async (city) => {
@@ -31,7 +31,7 @@ export const getWeatherData = async (city) => {
       sunset: new Date(data.sys.sunset * 1000),
       timezone: data.timezone
     };
-  } catch (error) {
+    } catch (error) {
     if (error.response?.status === 404) {
       throw new Error('City not found. Please check the spelling and try again.');
     } else if (error.response?.status === 401) {
@@ -54,6 +54,7 @@ export const getWeatherDataByCoordinates = async (lat, lon) => {
     });
 
     const data = response.data;
+    // console.log(data);
     
     return {
       city: data.name,
@@ -80,8 +81,11 @@ export const getWeatherDataByCoordinates = async (lat, lon) => {
   }
 };
 
+// const iconCode = '04n';
+
 export const getWeatherIcon = (iconCode) => {
-  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  return `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+  // return `https://openweathermap.org/img/wn/04n@2x.png`;
 };
 
 

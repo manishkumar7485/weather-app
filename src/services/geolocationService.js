@@ -41,7 +41,7 @@ export const getCurrentLocation = () => {
 
 export const getCityFromCoordinates = async (coordinates) => {
   try {
-    const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY || '';
+    const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY || '1bc5d446b342dce8d4069504af326b92';
     const response = await fetch(
       `https://api.openweathermap.org/geo/1.0/reverse?lat=${coordinates.latitude}&lon=${coordinates.longitude}&limit=1&appid=${apiKey}`
     );
