@@ -14,13 +14,13 @@ const SearchBar = ({ onSearch, onLocationClick, loading }) => {
     if (!cityName || loading) return;
 
     // Update URL
-    navigate(`/weather/${encodeURIComponent(cityName)}`);
+    navigate(`/weather?city=${encodeURIComponent(cityName)}`);
 
     // Fetch weather
     onSearch(cityName);
 
     // Optional: Clear input after search
-    // setCity("");
+    setCity("");
   };
 
   return (
