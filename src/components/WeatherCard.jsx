@@ -17,7 +17,11 @@ const WeatherCard = ({ weather }) => {
       <div className="weather-header">
         <div className="location">
           <h2 className="city-name">{weather.city}</h2>
-          <p className="country">{weather.country}</p>
+          {/* <p className="state"></p> */}
+          <p className="country">{weather.state}, 
+            {weather.country}
+            {/* , {weather.postcode} */}
+            </p>
         </div>
         <div className="weather-icon">
           <img 

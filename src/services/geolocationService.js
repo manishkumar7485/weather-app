@@ -1,7 +1,9 @@
+// services/geolocationService.js
+
 export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      reject(new Error('Geolocation is not supported by this browser.'));
+      reject(new Error("Geolocation is not supported by this browser."));
       return;
     }
 
@@ -13,22 +15,26 @@ export const getCurrentLocation = () => {
         });
       },
       (error) => {
-        let errorMessage = 'Unable to retrieve your location.';
+        let message = "Unable to retrieve your location.";
+
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = 'Location access denied by user.';
+            message = "Location access denied.";
             break;
+
           case error.POSITION_UNAVAILABLE:
-            errorMessage = 'Location information is unavailable.';
+            message = "Location unavailable.";
             break;
+
           case error.TIMEOUT:
-            errorMessage = 'Location request timed out.';
+            message = "Location request timed out.";
             break;
+
           default:
-            errorMessage = 'An unknown geolocation error occurred.';
-            break;
+            message = "Unknown location error.";
         }
-        reject(new Error(errorMessage));
+
+        reject(new Error(message));
       },
       {
         enableHighAccuracy: true,
@@ -39,27 +45,56 @@ export const getCurrentLocation = () => {
   });
 };
 
-export const getCityFromCoordinates = async (coordinates) => {
+export const getCityFromCoordinates = async ({
+  latitude,
+  longitude,
+}) => {
   try {
-    const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY || '1bc5d446b342dce8d4069504af326b92';
     const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=${coordinates.latitude}&lon=${coordinates.longitude}&limit=1&appid=${apiKey}`
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
     );
+
     if (!response.ok) {
-      throw new Error('Failed to fetch location data');
+      throw new Error("Failed to fetch location details.");
     }
+
     const data = await response.json();
-    if (data.length === 0) {
-      throw new Error('No location data found');
-    }
+
+    console.log("BigDataCloud Response:", data);
+
     return {
-      city: data[0].name,
-      country: data[0].country,
-      coordinates: coordinates,
+      city:
+        data.city ||
+        data.locality ||
+        data.localityInfo?.administrative?.[2]?.name ||
+        "",
+
+      state:
+        data.principalSubdivision ||
+        "",
+
+      district:
+        data.localityInfo?.administrative?.[3]?.name ||
+        "",
+
+      country:
+        data.countryName ||
+        "",
+
+      countryCode:
+        data.countryCode ||
+        "",
+
+      postcode:
+        data.postcode ||
+        "",
+
+      latitude,
+      longitude,
     };
   } catch (error) {
-    throw new Error('Failed to get city name from coordinates');
+    console.error(error);
+
+    throw new Error("Failed to retrieve city information.");
   }
 };
-
-
