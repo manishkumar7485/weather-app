@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import "./App.css";
-
+import ThemeToggle from "./components/ThemeToggle";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
-import WeatherDetails from "./components/WeatherDetails";
+// import WeatherDetails from "./components/WeatherDetails";
+import HourlyForecast from "./components/HourlyForecast";
+import DailyForecast from "./components/DailyForecast";
+import AirQualityCard from "./components/AirQualityCard";
+import WeatherHighlights from "./components/WeatherHighlights";
+import WeatherMap from "./components/WeatherMap";
+import WeatherBackground from "./components/WeatherBackground";
 
 import { getCurrentLocation } from "./services/geolocationService";
 import {
@@ -85,46 +91,76 @@ function WeatherPage() {
   };
 
   return (
-    <div className="app">
-      <div className="container">
-        <h1 className="app-title">MyCityWeather App</h1>
+  <div className="app">
+    {weather && <WeatherBackground weather={weather} />}
 
-        <SearchBar
-          onSearch={handleSearch}
-          onLocationClick={fetchWeatherByLocation}
-          loading={loading}
-        />
+    <ThemeToggle />
 
-        {locationPermission === "denied" && (
-          <div className="location-notice">
-            <p>📍 Showing weather for {city}. You can search for your city above.</p>
-          </div>
-        )}
+    <div className="container">
+      <h1 className="app-title">MyCityWeather App</h1>
 
-        {locationPermission === "granted" && (
-          <div className="location-success">
-            <p>📍 Showing weather for your current location</p>
-          </div>
-        )}
+      <SearchBar
+        onSearch={handleSearch}
+        onLocationClick={fetchWeatherByLocation}
+        loading={loading}
+      />
 
-        {error && <div className="error-message">{error}</div>}
+      {locationPermission === "denied" && (
+        <div className="location-notice">
+          <p>
+            📍 Showing weather for <strong>{city}</strong>. You can search for
+            another city above.
+          </p>
+        </div>
+      )}
 
-        {weather && !loading && (
-          <>
-            <WeatherCard weather={weather} />
-            <WeatherDetails weather={weather} />
-          </>
-        )}
+      {locationPermission === "granted" && (
+        <div className="location-success">
+          <p>📍 Showing weather for your current location</p>
+        </div>
+      )}
 
-        {loading && (
-          <div className="loading">
-            <div className="spinner"></div>
-            <p>Loading weather data...</p>
-          </div>
-        )}
-      </div>
+      {error && <div className="error-message">{error}</div>}
+
+      {loading && (
+        <div className="loading">
+          <div className="spinner"></div>
+          <p>Loading weather data...</p>
+        </div>
+      )}
+
+      {weather && !loading && (
+        <>
+          <WeatherCard weather={weather} />
+
+          <HourlyForecast
+            forecast={weather.hourlyForecast}
+          />
+
+          <WeatherHighlights
+            weather={weather}
+          />
+
+          <DailyForecast
+            forecast={weather.dailyForecast}
+          />
+
+          <AirQualityCard
+            airQuality={weather.airQuality}
+          />
+
+          {/* <WeatherDetails
+            weather={weather}
+          /> */}
+
+          <WeatherMap
+            weather={weather}
+          />
+        </>
+      )}
     </div>
-  );
+  </div>
+);
 }
 
 export default function App() {
