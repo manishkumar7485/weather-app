@@ -13,61 +13,54 @@ const SearchBar = ({ onSearch, onLocationClick, loading }) => {
 
     if (!cityName || loading) return;
 
-    // Update URL
     navigate(`/weather?city=${encodeURIComponent(cityName)}`);
-
-    // Fetch weather
     onSearch(cityName);
-
-    // Optional: Clear input after search
     setCity("");
   };
 
   return (
-    <div className="search-bar">
-      <form onSubmit={handleSubmit}>
-        <div className="search-input-container">
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Enter city name..."
-            className="search-input"
-            disabled={loading}
-          />
-
-          <button
-            type="submit"
-            className="search-button"
-            disabled={loading || !city.trim()}
-          >
-            {loading ? (
-              <div className="button-spinner"></div>
-            ) : (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </form>
+    <form className="search-bar" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Enter city name..."
+        className="search-input"
+        disabled={loading}
+      />
 
       <button
+        type="submit"
+        className="search-button"
+        disabled={loading || !city.trim()}
+        title="Search"
+      >
+        {loading ? (
+          <div className="button-spinner"></div>
+        ) : (
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        )}
+      </button>
+
+      <button
+        type="button"
         className="location-button"
         onClick={() => {
           navigate("/weather");
           onLocationClick();
         }}
         disabled={loading}
-        title="Use my current location"
+        title="Use My Location"
       >
         <svg
           width="20"
@@ -81,9 +74,9 @@ const SearchBar = ({ onSearch, onLocationClick, loading }) => {
           <circle cx="12" cy="10" r="3" />
         </svg>
 
-        My Location
+        <span className="location-text">My Location</span>
       </button>
-    </div>
+    </form>
   );
 };
 

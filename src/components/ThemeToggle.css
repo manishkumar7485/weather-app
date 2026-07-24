@@ -1,0 +1,26 @@
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  font-size: 22px;
+
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(12px);
+
+  transition: .3s;
+
+  z-index: 999;
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg);
+}
