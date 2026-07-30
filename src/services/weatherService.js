@@ -237,7 +237,7 @@ export const getWeatherData = async (city) => {
   try {
     // Current Weather
     const weatherResponse = await axios.get(
-      `${WEATHER_BASE_URL}/current.json`,
+      `${WEATHER_BASE_URL}/weather`,
       {
         params: {
           q: city,
