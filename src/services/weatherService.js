@@ -1,22 +1,21 @@
 import axios from "axios";
-
+// import ENV from 'env'
 /* ==============================
    Configuration
 ================================= */
 
-const API_KEY = "1bc5d446b342dce8d4069504af326b92";
 
-const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5";
+const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
-const AIR_BASE_URL = "https://api.openweathermap.org/data/2.5/air_pollution";
+const WEATHER_BASE_URL = process.env.REACT_APP_OPENWEATHER_BASE_URL;
 
-const BIGDATA_URL =
-  "https://api.bigdatacloud.net/data/reverse-geocode-client";
+const AIR_BASE_URL = process.env.REACT_APP_OPENWEATHERAIR_BASE_URL;
+
+const BIGDATA_URL = process.env.REACT_APP_BIGDATA_URL;
 
 /* ==============================
    BigDataCloud Location
 ================================= */
-
 const getLocationDetails = async (lat, lon) => {
   try {
     const { data } = await axios.get(BIGDATA_URL, {
@@ -26,7 +25,7 @@ const getLocationDetails = async (lat, lon) => {
         localityLanguage: "en",
       },
     });
-console.log(data);
+// console.log(data);
     return {
       city:
         data.city ||
@@ -238,7 +237,7 @@ export const getWeatherData = async (city) => {
   try {
     // Current Weather
     const weatherResponse = await axios.get(
-      `${WEATHER_BASE_URL}/weather`,
+      `${WEATHER_BASE_URL}/current.json`,
       {
         params: {
           q: city,

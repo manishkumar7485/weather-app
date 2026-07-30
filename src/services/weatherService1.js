@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_KEY = "1bc5d446b342dce8d4069504af326b92";
-const BASE_URL = "https://api.openweathermap.org/data/2.5";
+const API_KEY = "e507e7d11194435b892171613262707";
+const BASE_URL = "https://api.weatherapi.com/v1";
 
 /**
  * Get state, district, country from BigDataCloud
@@ -40,73 +40,97 @@ const getLocationDetails = async (lat, lon) => {
   }
 };
 
+/**
+ * Get Weather By City
+ */
 export const getWeatherData = async (city) => {
   try {
-    const response = await axios.get(`${BASE_URL}/weather`, {
+    const response = await axios.get(`${BASE_URL}/forecast.json`, {
       params: {
+        key: API_KEY,
         q: city,
-        appid: API_KEY,
-        units: "metric",
+        days: 10,
+        aqi: "yes",
+        alerts: "yes",
       },
     });
 
     const data = response.data;
 
+    console.log(data)
+
     const location = await getLocationDetails(
-      data.coord.lat,
-      data.coord.lon
+      data.location.lat,
+      data.location.lon
     );
 
     return {
-      city: location.city || data.name,
+      city: location.city || data.location.name,
       state: location.state,
       district: location.district,
-      country: location.country || data.sys.country,
+      country: location.country || data.location.country,
 
-      temperature: Math.round(data.main.temp),
-      feelsLike: Math.round(data.main.feels_like),
+      latitude: data.location.lat,
+      longitude: data.location.lon,
 
-      description: data.weather[0].description,
-      icon: data.weather[0].icon,
+      temperature: Math.round(data.current.temp_c),
+      feelsLike: Math.round(data.current.feelslike_c),
 
-      humidity: data.main.humidity,
-      pressure: data.main.pressure,
+      minTemp: Math.round(data.forecast.forecastday[0].day.mintemp_c),
+      maxTemp: Math.round(data.forecast.forecastday[0].day.maxtemp_c),
 
-      windSpeed: data.wind.speed,
-      windDirection: data.wind.deg,
+      description: data.current.condition.text,
+      icon: data.current.condition.icon,
 
-      visibility: data.visibility / 1000,
+      humidity: data.current.humidity,
+      pressure: data.current.pressure_mb,
 
-      sunrise: new Date(data.sys.sunrise * 1000),
-      sunset: new Date(data.sys.sunset * 1000),
+      windSpeed: data.current.wind_kph,
+      windDirection: data.current.wind_degree,
 
-      timezone: data.timezone,
+      visibility: data.current.vis_km,
+
+      uv: data.current.uv,
+
+      sunrise:
+        data.forecast.forecastday[0].astro.sunrise,
+
+      sunset:
+        data.forecast.forecastday[0].astro.sunset,
+
+      airQuality: data.current.air_quality,
+
+      hourly: data.forecast.forecastday[0].hour,
+
+      forecast: data.forecast.forecastday,
+
+      alerts: data.alerts?.alert || [],
     };
   } catch (error) {
-    if (error.response?.status === 404) {
-      throw new Error(
-        "City not found. Please check the spelling and try again."
-      );
+    if (error.response?.status === 400) {
+      throw new Error("City not found.");
     }
 
     if (error.response?.status === 401) {
-      throw new Error(
-        "Invalid API key. Please check your OpenWeatherMap API key."
-      );
+      throw new Error("Invalid WeatherAPI API Key.");
     }
 
     throw new Error("Failed to fetch weather data.");
   }
 };
 
+/**
+ * Get Weather By Coordinates
+ */
 export const getWeatherDataByCoordinates = async (lat, lon) => {
   try {
-    const response = await axios.get(`${BASE_URL}/weather`, {
+    const response = await axios.get(`${BASE_URL}/forecast.json`, {
       params: {
-        lat,
-        lon,
-        appid: API_KEY,
-        units: "metric",
+        key: API_KEY,
+        q: `${lat},${lon}`,
+        days: 10,
+        aqi: "yes",
+        alerts: "yes",
       },
     });
 
@@ -115,41 +139,61 @@ export const getWeatherDataByCoordinates = async (lat, lon) => {
     const location = await getLocationDetails(lat, lon);
 
     return {
-      city: location.city || data.name,
+      city: location.city || data.location.name,
       state: location.state,
       district: location.district,
-      country: location.country || data.sys.country,
+      country: location.country || data.location.country,
 
-      temperature: Math.round(data.main.temp),
-      feelsLike: Math.round(data.main.feels_like),
+      latitude: data.location.lat,
+      longitude: data.location.lon,
 
-      description: data.weather[0].description,
-      icon: data.weather[0].icon,
+      temperature: Math.round(data.current.temp_c),
+      feelsLike: Math.round(data.current.feelslike_c),
 
-      humidity: data.main.humidity,
-      pressure: data.main.pressure,
+      minTemp: Math.round(data.forecast.forecastday[0].day.mintemp_c),
+      maxTemp: Math.round(data.forecast.forecastday[0].day.maxtemp_c),
 
-      windSpeed: data.wind.speed,
-      windDirection: data.wind.deg,
+      description: data.current.condition.text,
+      icon: data.current.condition.icon,
 
-      visibility: data.visibility / 1000,
+      humidity: data.current.humidity,
+      pressure: data.current.pressure_mb,
 
-      sunrise: new Date(data.sys.sunrise * 1000),
-      sunset: new Date(data.sys.sunset * 1000),
+      windSpeed: data.current.wind_kph,
+      windDirection: data.current.wind_degree,
 
-      timezone: data.timezone,
+      visibility: data.current.vis_km,
+
+      uv: data.current.uv,
+
+      sunrise:
+        data.forecast.forecastday[0].astro.sunrise,
+
+      sunset:
+        data.forecast.forecastday[0].astro.sunset,
+
+      airQuality: data.current.air_quality,
+
+      hourly: data.forecast.forecastday[0].hour,
+
+      forecast: data.forecast.forecastday,
+
+      alerts: data.alerts?.alert || [],
     };
   } catch (error) {
     if (error.response?.status === 401) {
-      throw new Error(
-        "Invalid API key. Please check your OpenWeatherMap API key."
-      );
+      throw new Error("Invalid WeatherAPI API Key.");
     }
 
     throw new Error("Failed to fetch weather data.");
   }
 };
 
-export const getWeatherIcon = (iconCode) => {
-  return `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+/**
+ * WeatherAPI already returns a complete icon URL.
+ */
+export const getWeatherIcon = (iconUrl) => {
+  return iconUrl.startsWith("//")
+    ? `https:${iconUrl}`
+    : iconUrl;
 };
