@@ -11,6 +11,7 @@ import AirQualityCard from "./components/AirQualityCard";
 import WeatherHighlights from "./components/WeatherHighlights";
 import WeatherMap from "./components/WeatherMap";
 import WeatherBackground from "./components/WeatherBackground";
+import WeatherChart from "./components/WeatherChart";
 
 import { getCurrentLocation } from "./services/geolocationService";
 import {
@@ -152,6 +153,10 @@ function WeatherPage() {
           {/* <WeatherDetails
             weather={weather}
           /> */}
+      
+          <WeatherChart
+            data={weather.chartData}
+          />
 
           <WeatherMap
             weather={weather}

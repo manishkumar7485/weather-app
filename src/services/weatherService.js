@@ -133,6 +133,10 @@ const formatHourlyForecast = (forecastList) => {
 
     feelsLike: Math.round(item.main.feels_like),
 
+    tempMin: Math.round(item.main.temp_min),
+
+    tempMax: Math.round(item.main.temp_max),
+
     humidity: item.main.humidity,
 
     pressure: item.main.pressure,
@@ -141,11 +145,15 @@ const formatHourlyForecast = (forecastList) => {
 
     windDirection: item.wind.deg,
 
+    visibility: item.visibility / 1000,
+
+    cloudiness: item.clouds.all,
+
+    rainChance: Math.round(item.pop * 100),
+
     description: item.weather[0].description,
 
     icon: item.weather[0].icon,
-
-    rainChance: Math.round(item.pop * 100),
   }));
 };
 
@@ -182,6 +190,24 @@ const formatDailyForecast = (forecastList) => {
     description: item.weather[0].description,
 
     rainChance: Math.round(item.pop * 100),
+  }));
+};
+
+/* ==============================
+   Create weather chart Data
+================================= */
+
+const createChartData = (hourlyForecast) => {
+  return hourlyForecast.map((item) => ({
+    time: item.time,
+    temperature: item.temperature,
+    feelsLike: item.feelsLike,
+    humidity: item.humidity,
+    pressure: item.pressure,
+    windSpeed: item.windSpeed,
+    rainChance: item.rainChance,
+    cloudiness: item.cloudiness,
+    visibility: item.visibility,
   }));
 };
 
@@ -321,7 +347,7 @@ export const getWeatherDataByCoordinates = async (
     );
 
     const weather = weatherResponse.data;
-
+    // console.log(weather);
     const forecastResponse = await axios.get(
       `${WEATHER_BASE_URL}/forecast`,
       {
@@ -334,20 +360,29 @@ export const getWeatherDataByCoordinates = async (
       }
     );
 
+    // console.log(weather);
+
     const location = await getLocationDetails(lat, lon);
 
     const airQuality = await getAirQuality(lat, lon);
 
+    const hourlyForecast = formatHourlyForecast(
+      forecastResponse.data.list
+    );
+    const dailyForecast = formatDailyForecast(
+      forecastResponse.data.list
+    );
+
+    // console.log(createChartData(hourlyForecast));
+
     return {
       ...formatCurrentWeather(weather, location),
 
-      hourlyForecast: formatHourlyForecast(
-        forecastResponse.data.list
-      ),
+      hourlyForecast,
 
-      dailyForecast: formatDailyForecast(
-        forecastResponse.data.list
-      ),
+      dailyForecast,
+
+      chartData: createChartData(hourlyForecast),
 
       airQuality,
     };
