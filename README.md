@@ -1,137 +1,252 @@
 # 🌦️ MyCityWeather
 
-A modern, responsive weather application built with **React** that provides real-time weather information, hourly and 5-day forecasts, air quality data, weather highlights, an interactive map, animated weather backgrounds, and dark/light theme support.
+**MyCityWeather** is a modern, responsive weather application built with **React** that provides real-time weather information, hourly and 5-day forecasts, air quality data, weather highlights, interactive maps, animated weather backgrounds, beautiful charts, and an AI-powered weather assistant called **Nimbus AI**.
 
 ---
 
-## 🚀 Features
+## 🌐 Live Demo
 
-### 🌍 Current Location Weather
+🚀 **Try the application here**
 
-* Detects the user's current location using the Browser Geolocation API.
-* Gracefully falls back to a default city if location permission is denied.
-* Displays city, state, district, country, and postal code using the BigDataCloud Reverse Geocoding API.
+👉 **https://manishkumar7485.github.io/weather-app/#/weather**
 
-### 🔍 Search Weather
+---
 
-* Search weather by city name.
-* Dynamic URL routing for searched cities.
-* Instant weather updates.
+# ✨ Features
 
-### 🌤 Current Weather
+## 🌍 Current Location Weather
 
-* Temperature
-* Weather description
-* Weather icon
-* Feels Like temperature
-* Humidity
-* Pressure
-* Wind Speed
-* Visibility
-* Sunrise & Sunset
+- Detects the user's current location using the Browser Geolocation API.
+- Gracefully falls back to a default city if location permission is denied.
+- Displays:
+  - City
+  - State
+  - District
+  - Country
+  - Postal Code
+- Reverse Geocoding powered by **BigDataCloud API**.
 
-### ⏰ Hourly Forecast
+---
 
-* Hour-by-hour forecast
-* Temperature
-* Weather icon
-* Rain probability
-* Weather description
+## 🔍 Search Weather
 
-### 📅 5-Day Forecast
+- Search weather by city name.
+- Dynamic city routing.
+- Instant weather updates.
+- Refresh-safe navigation.
 
-* Daily weather forecast
-* Maximum & Minimum temperature
-* Weather condition
-* Rain probability
+---
 
-### 🌱 Air Quality Index (AQI)
+## 🌤 Current Weather
 
-* AQI Level
-* PM2.5
-* PM10
-* CO
-* NO₂
-* SO₂
-* O₃
+Displays detailed weather information including:
 
-### 📊 Weather Highlights
+- 🌡 Temperature
+- 🤗 Feels Like Temperature
+- 🌤 Weather Description
+- ☁ Weather Icon
+- 💧 Humidity
+- 🌬 Wind Speed
+- 🧭 Wind Direction
+- 👁 Visibility
+- 📈 Pressure
+- ☁ Cloud Coverage
+- 🌅 Sunrise
+- 🌇 Sunset
 
-* Feels Like
-* Humidity
-* Pressure
-* Visibility
-* Wind Speed
-* Wind Direction
-* Cloud Coverage
-* Sunrise
-* Sunset
+---
 
-### 🗺 Interactive Weather Map
+## ⏰ Hourly Forecast
 
-* Displays the selected city's location on an interactive Leaflet map.
-* Uses OpenStreetMap tiles.
-* Weather marker with city information.
+- Hourly weather forecast
+- Temperature
+- Weather icons
+- Rain probability
+- Weather condition
+- Humidity
+- Wind speed
 
-### 🎨 Animated Weather Background
+---
 
-Background changes automatically based on current weather conditions:
+## 📅 5-Day Forecast
 
-* ☀️ Sunny
-* ☁️ Cloudy
-* 🌧 Rain
-* ⛈ Thunderstorm
-* ❄️ Snow
-* 🌫 Fog
-* 🌙 Night
+- Daily forecast
+- Maximum & Minimum temperature
+- Weather condition
+- Rain probability
 
-Includes animated effects such as:
+---
 
-* Floating weather icons
-* Rain animation
-* Snowfall
-* Lightning
-* Twinkling stars
+## 🌱 Air Quality Index (AQI)
 
-### 🌗 Dark / Light Theme
+Displays detailed air pollution information.
 
-* One-click theme switch.
-* Theme preference stored in Local Storage.
-* Smooth transitions between themes.
+- AQI Level
+- PM2.5
+- PM10
+- CO
+- NO
+- NO₂
+- O₃
+- SO₂
+- NH₃
 
-### 📱 Fully Responsive
+---
+
+## 📊 Weather Highlights
+
+Includes:
+
+- Temperature
+- Feels Like
+- Humidity
+- Pressure
+- Wind Speed
+- Wind Direction
+- Visibility
+- Cloud Coverage
+- Sunrise
+- Sunset
+
+---
+
+## 📈 Weather Analytics
+
+Interactive weather charts built using **Recharts**.
+
+Features:
+
+- Temperature Trend
+- Hourly Temperature Chart
+- Responsive Graphs
+- Smooth Animations
+
+---
+
+## 🗺 Interactive Weather Map
+
+Built using **React Leaflet** and **OpenStreetMap**.
+
+Features:
+
+- Interactive map
+- Current city marker
+- Latitude & Longitude
+- Zoom controls
+
+---
+
+## 🎨 Animated Weather Background
+
+Dynamic animated backgrounds based on weather conditions.
+
+Supported backgrounds:
+
+- ☀ Sunny
+- ☁ Cloudy
+- 🌧 Rain
+- ⛈ Thunderstorm
+- ❄ Snow
+- 🌫 Fog
+- 🌙 Night
+
+Animations include:
+
+- Floating weather icons
+- Rainfall
+- Snowfall
+- Lightning
+- Twinkling stars
+
+---
+
+## 🤖 Nimbus AI
+
+**Nimbus AI** is your smart weather companion.
+
+### Features
+
+- 💬 Floating AI Chat
+- 🌦 Dynamic weather suggestions
+- 🌡 Temperature insights
+- 🌱 Air Quality explanation
+- 🌧 Rain prediction
+- ☂ Umbrella recommendations
+- 🌅 Sunrise & Sunset information
+- 🏃 Outdoor activity suggestions
+- ⌨ Typing indicator
+- 📜 Auto scrolling messages
+- 🕒 Chat timestamps
+- 📱 Responsive chat interface
+
+> **Note:** AI integration is currently under development. The chatbot UI is fully functional and ready for API integration.
+
+---
+
+## 🌗 Dark / Light Theme
+
+- One-click theme toggle
+- Smooth transition
+- Theme saved using Local Storage
+
+---
+
+## 📱 Fully Responsive
 
 Optimized for:
 
-* Desktop
-* Laptop
-* Tablet
-* Mobile
+- 🖥 Desktop
+- 💻 Laptop
+- 📱 Tablet
+- 📲 Mobile
+- 📏 Small Mobile Devices
 
 ---
 
 # 🛠 Tech Stack
 
-### Frontend
+## Frontend
 
-* React
-* JavaScript (ES6+)
-* React Router DOM
-* Axios
-* CSS3
+- React
+- JavaScript (ES6+)
+- React Router DOM
+- Axios
+- CSS3
 
-### APIs
+---
 
-* OpenWeather Current Weather API
-* OpenWeather Forecast API
-* OpenWeather Air Pollution API
-* BigDataCloud Reverse Geocoding API
+## APIs
 
-### Maps
+### OpenWeather API
 
-* React Leaflet
-* Leaflet
-* OpenStreetMap
+- Current Weather
+- 5-Day Forecast
+- Air Pollution API
+- Weather Icons
+
+### BigDataCloud API
+
+- Reverse Geocoding
+
+---
+
+## Maps
+
+- React Leaflet
+- Leaflet
+- OpenStreetMap
+
+---
+
+## Charts
+
+- Recharts
+
+---
+
+## Icons
+
+- React Icons
 
 ---
 
@@ -140,13 +255,13 @@ Optimized for:
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/MyCityWeather.git
+git clone https://github.com/manishkumar7485/weather-app.git
 ```
 
-Navigate to the project
+Navigate into the project
 
 ```bash
-cd MyCityWeather
+cd weather-app
 ```
 
 Install dependencies
@@ -155,7 +270,7 @@ Install dependencies
 npm install
 ```
 
-Start the development server
+Run the development server
 
 ```bash
 npm start
@@ -175,6 +290,12 @@ Create a `.env` file in the project root.
 
 ```env
 REACT_APP_OPENWEATHER_API_KEY=YOUR_API_KEY
+
+REACT_APP_OPENWEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
+
+REACT_APP_OPENWEATHERAIR_BASE_URL=https://api.openweathermap.org/data/2.5/air_pollution
+
+REACT_APP_BIGDATA_URL=https://api.bigdatacloud.net/data/reverse-geocode-client
 ```
 
 Restart the development server after updating the `.env` file.
@@ -189,23 +310,26 @@ src
 ├── assets
 │
 ├── components
-│   ├── AirQualityCard.jsx
-│   ├── DailyForecast.jsx
-│   ├── HourlyForecast.jsx
-│   ├── SearchBar.jsx
-│   ├── ThemeToggle.jsx
-│   ├── WeatherBackground.jsx
-│   ├── WeatherCard.jsx
-│   ├── WeatherDetails.jsx
-│   ├── WeatherHighlights.jsx
-│   └── WeatherMap.jsx
+│   ├── AIChat
+│   ├── FloatingChatButton
+│   ├── AirQualityCard
+│   ├── DailyForecast
+│   ├── HourlyForecast
+│   ├── SearchBar
+│   ├── ThemeToggle
+│   ├── WeatherBackground
+│   ├── WeatherCard
+│   ├── WeatherChart
+│   ├── WeatherHighlights
+│   └── WeatherMap
 │
 ├── context
 │   └── ThemeContext.jsx
 │
 ├── services
 │   ├── geolocationService.js
-│   └── weatherService.js
+│   ├── weatherService.js
+│   └── chatService.js
 │
 ├── App.jsx
 ├── index.css
@@ -224,13 +348,13 @@ Current Weather
 https://api.openweathermap.org/data/2.5/weather
 ```
 
-5-Day Forecast
+Forecast
 
 ```
 https://api.openweathermap.org/data/2.5/forecast
 ```
 
-Air Quality
+Air Pollution
 
 ```
 https://api.openweathermap.org/data/2.5/air_pollution
@@ -241,6 +365,8 @@ Weather Icons
 ```
 https://openweathermap.org/img/wn/
 ```
+
+---
 
 ### BigDataCloud
 
@@ -254,17 +380,19 @@ https://api.bigdatacloud.net/data/reverse-geocode-client
 
 # 📸 Application Features
 
-* 🌍 Current Location Detection
-* 🔍 Search by City
-* 🌤 Live Weather
-* 📅 5-Day Forecast
-* ⏰ Hourly Forecast
-* 🌱 Air Quality Index
-* 📊 Weather Highlights
-* 🗺 Interactive Weather Map
-* 🎨 Animated Weather Background
-* 🌙 Dark / Light Theme
-* 📱 Responsive UI
+- 🌍 Current Location Weather
+- 🔍 Search by City
+- 🌤 Live Weather
+- 📈 Temperature Charts
+- ⏰ Hourly Forecast
+- 📅 5-Day Forecast
+- 🌱 Air Quality Index
+- 📊 Weather Highlights
+- 🗺 Interactive Weather Map
+- 🎨 Animated Weather Background
+- 🤖 Nimbus AI Assistant
+- 🌙 Dark / Light Theme
+- 📱 Fully Responsive UI
 
 ---
 
@@ -274,7 +402,7 @@ https://api.bigdatacloud.net/data/reverse-geocode-client
 npm run build
 ```
 
-The optimized production files will be generated in the `build` folder.
+The optimized production build will be generated inside the **build** folder.
 
 ---
 
@@ -282,64 +410,46 @@ The optimized production files will be generated in the `build` folder.
 
 This project can be deployed to:
 
-* GitHub Pages
-* Netlify
-* Vercel
-* Firebase Hosting
-* Render
+- GitHub Pages
+- Netlify
+- Vercel
+- Firebase Hosting
+- Render
 
 ---
 
-# 🔮 Future Improvements
+# 🔮 Future Enhancements
 
-* Weather Alerts
-* Weather Notifications
-* Favorite Cities
-* Recent Searches
-* Temperature Charts
-* Weather History
-* Sunrise & Sunset Animation
-* UV Index
-* Moon Phase
-* Multi-language Support
-
----
-
-## 🌐 Live Demo
-
-You can try the deployed application here:
-
-**🔗 Live Weather App:**
-**https://manishkumar7485.github.io/weather-app/#/weather**
-
-Or simply click the link below:
-
-👉 **MyCityWeather Live Demo**
-https://manishkumar7485.github.io/weather-app/#/weather
+- 🌩 Weather Alerts
+- 🔔 Push Notifications
+- ⭐ Favorite Cities
+- 🕒 Recent Searches
+- 📈 Advanced Weather Analytics
+- 🌙 Moon Phase
+- ☀ UV Index
+- 🌐 Multi-language Support
+- 🎤 Voice Assistant
+- 🔊 Text-to-Speech
+- 💾 Chat History
+- 📸 Weather Image Recognition
 
 ---
-
-## 📸 Preview
-
-Explore the application to experience:
-
-* 🌍 Current Location Weather
-* 🔍 Search by City
-* 🌤 Live Weather Updates
-* ⏰ Hourly Forecast
-* 📅 5-Day Forecast
-* 🌱 Air Quality Index (AQI)
-* 📊 Weather Highlights
-* 🗺 Interactive Weather Map
-* 🎨 Animated Weather Background
-* 🌙 Dark & Light Theme
-* 📱 Fully Responsive Design
-
----
-
 
 # 👨‍💻 Author
 
 **Manish Kumar**
 
-Built with ❤️ using React, JavaScript, OpenWeather API, Leaflet, and BigDataCloud.
+---
+
+# 🌦️ Nimbus AI
+
+> **Nimbus AI**  
+> **Powered by MyCityWeather**
+
+Your intelligent weather companion for quick, friendly, and personalized weather insights.
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, don't forget to ⭐ **star the repository** on GitHub!
