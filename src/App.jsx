@@ -4,7 +4,6 @@ import "./App.css";
 import ThemeToggle from "./components/ThemeToggle";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
-// import WeatherDetails from "./components/WeatherDetails";
 import HourlyForecast from "./components/HourlyForecast";
 import DailyForecast from "./components/DailyForecast";
 import AirQualityCard from "./components/AirQualityCard";
@@ -13,14 +12,15 @@ import WeatherMap from "./components/WeatherMap";
 import WeatherBackground from "./components/WeatherBackground";
 import WeatherChart from "./components/WeatherChart";
 
+import FloatingChatButton from "./components/FloatingChatButton/FloatingChatButton";
 import { getCurrentLocation } from "./services/geolocationService";
 import {
   getWeatherData,
   getWeatherDataByCoordinates,
 } from "./services/weatherService";
 
-function WeatherPage() {
-  const [weather, setWeather] = useState(null);
+function WeatherPage({ weather, setWeather }) {
+  // const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [city, setCity] = useState("");
@@ -33,6 +33,7 @@ function WeatherPage() {
   } else {
     fetchWeatherByLocation();
   }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [cityName]);
 
   const fetchWeatherByLocation = async () => {
@@ -90,6 +91,7 @@ function WeatherPage() {
     setCity(cityName);
     fetchWeather(cityName);
   };
+
 
   return (
   <div className="app">
@@ -149,10 +151,6 @@ function WeatherPage() {
           <AirQualityCard
             airQuality={weather.airQuality}
           />
-
-          {/* <WeatherDetails
-            weather={weather}
-          /> */}
       
           <WeatherChart
             data={weather.chartData}
@@ -169,15 +167,38 @@ function WeatherPage() {
 }
 
 export default function App() {
+  const [weather, setWeather] = useState(null);
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/weather" replace />} />
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigate to="/weather" replace />}
+        />
 
-      {/* Default location */}
-      <Route path="/weather" element={<WeatherPage />} />
+        <Route
+          path="/weather"
+          element={
+            <WeatherPage
+              weather={weather}
+              setWeather={setWeather}
+            />
+          }
+        />
 
-      {/* City from URL */}
-      <Route path="/weather/:cityName" element={<WeatherPage />} />
-    </Routes>
+        <Route
+          path="/weather/:cityName"
+          element={
+            <WeatherPage
+              weather={weather}
+              setWeather={setWeather}
+            />
+          }
+        />
+      </Routes>
+
+      <FloatingChatButton weather={weather} />
+      
+    </>
   );
 }
