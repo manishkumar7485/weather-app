@@ -3,7 +3,7 @@ import { getWeatherIcon } from "../services/weatherService";
 import "./DailyForecast.css";
 
 const DailyForecast = ({ forecast = [] }) => {
-  console.log(forecast);
+  // console.log(forecast);
   if (!forecast.length) return null;
   const formatDate = (date) => {
     if (!date) return "";
