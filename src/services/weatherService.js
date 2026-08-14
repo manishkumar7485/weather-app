@@ -293,7 +293,7 @@ export const getWeatherData = async (city) => {
 
     const weather = weatherResponse.data;
     const hourlyForecast = await getHourlyWeather(city);
-    console.log("Hourly data from service : ",hourlyForecast);
+    // console.log("Hourly data from service : ",hourlyForecast);
 
     // Forecast
     const forecastResponse = await axios.get(
@@ -364,6 +364,7 @@ export const getWeatherDataByCoordinates = async (
     );
 
     const weather = weatherResponse.data;
+    // const hourlyForecast = await getHourlyWeather(city);
     // console.log(weather);
     const forecastResponse = await axios.get(
       `${WEATHER_BASE_URL}/forecast`,
@@ -383,9 +384,7 @@ export const getWeatherDataByCoordinates = async (
 
     const airQuality = await getAirQuality(lat, lon);
 
-    const hourlyForecast = formatHourlyForecast(
-      forecastResponse.data.list
-    );
+    const hourlyForecast = await getHourlyWeather(location.city);
     const dailyForecast = formatDailyForecast(
       forecastResponse.data.list
     );

@@ -2,17 +2,38 @@ import React from "react";
 import "./WeatherHighlights.css";
 
 const WeatherHighlights = ({ weather }) => {
+  // console.log(weather)
   if (!weather) return null;
 
-  const formatTime = (date) =>
-    new Date(date).toLocaleTimeString([], {
+  const formatTime = (date) => {
+    if (!date) return "--";
+
+    const parsedDate = new Date(date);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+      return "--";
+    }
+
+    return parsedDate.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
 
   const getWindDirection = (deg) => {
+    if (deg === undefined || deg === null) {
+      return "--";
+    }
+
     const directions = [
-      "N","NE","E","SE","S","SW","W","NW"
+      "N",
+      "NE",
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW",
     ];
 
     return directions[
@@ -23,40 +44,69 @@ const WeatherHighlights = ({ weather }) => {
   const cards = [
     {
       title: "Feels Like",
-      icon: "🌡",
-      value: `${weather.feelsLike}°C`,
+      icon: "🌡️",
+      value:
+        weather.feelsLike !== undefined
+          ? `${weather.feelsLike}°C`
+          : "--",
     },
+
     {
       title: "Humidity",
       icon: "💧",
-      value: `${weather.humidity}%`,
+      value:
+        weather.humidity !== undefined
+          ? `${weather.humidity}%`
+          : "--",
     },
+
     {
       title: "Pressure",
       icon: "📊",
-      value: `${weather.pressure} hPa`,
+      value:
+        weather.pressure !== undefined
+          ? `${weather.pressure} hPa`
+          : "--",
     },
+
     {
       title: "Visibility",
       icon: "👁️",
-      value: `${weather.visibility} km`,
+      value:
+        weather.visibility !== undefined
+          ? `${weather.visibility} km`
+          : "--",
     },
+
     {
       title: "Wind",
       icon: "💨",
-      value: `${weather.windSpeed} m/s`,
-      subtitle: getWindDirection(weather.windDirection),
+      value:
+        weather.windSpeed !== undefined
+          ? `${weather.windSpeed} m/s`
+          : "--",
+
+      subtitle:
+        weather.windDirection !== undefined
+          ? getWindDirection(weather.windDirection)
+          : "--",
     },
+
     {
       title: "Clouds",
-      icon: "☁",
-      value: `${weather.cloudiness}%`,
+      icon: "☁️",
+      value:
+        weather.cloudiness !== undefined
+          ? `${weather.cloudiness}%`
+          : "--",
     },
+
     {
       title: "Sunrise",
       icon: "🌅",
       value: formatTime(weather.sunrise),
     },
+
     {
       title: "Sunset",
       icon: "🌇",
@@ -65,27 +115,50 @@ const WeatherHighlights = ({ weather }) => {
   ];
 
   return (
-    <div className="highlights">
-      <h2>Today's Highlights</h2>
+    <section className="highlights">
+
+      <div className="highlights-header">
+        <h2>Today's Highlights</h2>
+
+        {weather.city && (
+          <span className="highlight-location">
+            📍 {weather.city}
+          </span>
+        )}
+      </div>
 
       <div className="highlight-grid">
-        {cards.map((card, index) => (
-          <div className="highlight-card" key={index}>
+
+        {cards.map((card) => (
+          <div
+            className="highlight-card"
+            key={card.title}
+          >
+
             <div className="highlight-icon">
               {card.icon}
             </div>
 
-            <h4>{card.title}</h4>
+            <h4>
+              {card.title}
+            </h4>
 
-            <h2>{card.value}</h2>
+            <h2>
+              {card.value}
+            </h2>
 
             {card.subtitle && (
-              <small>{card.subtitle}</small>
+              <small>
+                {card.subtitle}
+              </small>
             )}
+
           </div>
         ))}
+
       </div>
-    </div>
+
+    </section>
   );
 };
 

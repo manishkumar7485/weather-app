@@ -205,7 +205,7 @@ const fetchWeather = async (cityName) => {
           />
 
           <WeatherHighlights
-            weather={weather.hourlyForecast}
+            weather={weather || [] }
           />
 
           <DailyForecast
