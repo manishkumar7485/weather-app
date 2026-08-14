@@ -17,6 +17,7 @@ import { getCurrentLocation } from "./services/geolocationService";
 import {
   getWeatherData,
   getWeatherDataByCoordinates,
+  getHourlyWeather,
 } from "./services/weatherService";
 
 function WeatherPage({ weather, setWeather }) {
@@ -36,56 +37,119 @@ function WeatherPage({ weather, setWeather }) {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [cityName]);
 
-  const fetchWeatherByLocation = async () => {
-    setLoading(true);
-    setError(null);
+const fetchWeatherByLocation = async () => {
+  setLoading(true);
+  setError(null);
 
-    try {
-      const coordinates = await getCurrentLocation();
+  try {
+    const coordinates =
+      await getCurrentLocation();
 
-      setLocationPermission("granted");
+    setLocationPermission("granted");
 
-      const weatherData = await getWeatherDataByCoordinates(
+    // OpenWeather
+    const weatherData =
+      await getWeatherDataByCoordinates(
         coordinates.latitude,
         coordinates.longitude
       );
 
-      setWeather(weatherData);
-      setCity(weatherData.city);
-    } catch (err) {
-      setLocationPermission("denied");
-
-      console.log(
-        "Geolocation failed, falling back to default city:",
-        err?.message
+    // WeatherAPI hourly
+    const hourlyForecast =
+      await getHourlyWeather(
+        weatherData.city
       );
 
-      try {
-        const data = await getWeatherData("Noida");
-        setWeather(data);
-        setCity("Noida");
-      } catch (fallbackErr) {
-        setError(fallbackErr?.message || "Failed to fetch weather data.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+    const finalWeather = {
+      ...weatherData,
+      hourlyForecast,
+    };
 
-  const fetchWeather = async (cityName) => {
-    setLoading(true);
-    setError(null);
+    setWeather(finalWeather);
 
+    setCity(
+      finalWeather.city
+    );
+
+  } catch (err) {
+    setLocationPermission("denied");
+
+    console.error(
+      "Location weather error:",
+      err
+    );
+
+    // Fallback
     try {
-      const data = await getWeatherData(cityName);
-      setWeather(data);
-      setCity(cityName);
-    } catch (err) {
-      setError(err?.message || "Failed to fetch weather data.");
-    } finally {
-      setLoading(false);
+      const data =
+        await getWeatherData("Noida");
+
+      const hourlyForecast =
+        await getHourlyWeather(
+          data.city || "Noida"
+        );
+
+      const finalWeather = {
+        ...data,
+        hourlyForecast,
+      };
+
+      setWeather(finalWeather);
+
+      setCity(
+        finalWeather.city || "Noida"
+      );
+
+    } catch (fallbackErr) {
+      setError(
+        fallbackErr?.message ||
+        "Failed to fetch weather data."
+      );
     }
-  };
+
+  } finally {
+    setLoading(false);
+  }
+};
+
+const fetchWeather = async (cityName) => {
+  setLoading(true);
+  setError(null);
+
+  try {
+    // OpenWeather data
+    const data = await getWeatherData(cityName);
+
+    // WeatherAPI hourly data
+    const hourlyForecast = await getHourlyWeather(
+      data.city || cityName
+    );
+
+
+    // Combine both
+    const finalWeather = {
+      ...data,
+      hourlyForecast,
+    };
+
+    setWeather(finalWeather);
+
+    setCity(
+      finalWeather.city || cityName
+    );
+
+  } catch (err) {
+    console.error(err);
+
+    setError(
+      err?.message ||
+      "Failed to fetch weather data."
+    );
+
+  } finally {
+    setLoading(false);
+  }
+};  
 
   const handleSearch = (cityName) => {
     setCity(cityName);
@@ -137,11 +201,11 @@ function WeatherPage({ weather, setWeather }) {
           <WeatherCard weather={weather} />
 
           <HourlyForecast
-            forecast={weather.hourlyForecast}
+            forecast={weather.hourlyForecast || []}
           />
 
           <WeatherHighlights
-            weather={weather}
+            weather={weather.hourlyForecast}
           />
 
           <DailyForecast
@@ -153,7 +217,7 @@ function WeatherPage({ weather, setWeather }) {
           />
       
           <WeatherChart
-            data={weather.chartData}
+            data={weather.hourlyForecast}
           />
 
           <WeatherMap

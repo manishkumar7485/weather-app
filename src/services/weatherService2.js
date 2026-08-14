@@ -13,10 +13,6 @@ const AIR_BASE_URL = process.env.REACT_APP_OPENWEATHERAIR_BASE_URL;
 
 const BIGDATA_URL = process.env.REACT_APP_BIGDATA_URL;
 
-const WEATHERAPI_KEY = process.env.REACT_APP_WEATHERAPI_KEY;
-
-const WEATHERAPI_BASE_URL = process.env.REACT_APP_WEATHERAPI_BASE_URL || "https://api.weatherapi.com/v1";
-
 /* ==============================
    BigDataCloud Location
 ================================= */
@@ -124,54 +120,40 @@ const formatCurrentWeather = (weather, location) => ({
    Format Hourly Forecast
 ================================= */
 
-const formatHourlyForecast = (hourlyList = []) => {
-  return hourlyList.map((item) => ({
-    date: item.time,
+const formatHourlyForecast = (forecastList) => {
+  return forecastList.slice(0, 8).map((item) => ({
+    date: item.dt_txt,
 
-    time: new Date(item.time).toLocaleTimeString([], {
+    time: new Date(item.dt * 1000).toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     }),
 
-    temperature: Math.round(item.temp_c),
+    temperature: Math.round(item.main.temp),
 
-    feelsLike: Math.round(item.feelslike_c),
+    feelsLike: Math.round(item.main.feels_like),
 
-    tempMin: null,
+    tempMin: Math.round(item.main.temp_min),
 
-    tempMax: null,
+    tempMax: Math.round(item.main.temp_max),
 
-    humidity: item.humidity,
+    humidity: item.main.humidity,
 
-    pressure: item.pressure_mb,
+    pressure: item.main.pressure,
 
-    windSpeed: item.wind_kph,
+    windSpeed: item.wind.speed,
 
-    windDirection: item.wind_degree,
+    windDirection: item.wind.deg,
 
-    visibility: item.vis_km,
+    visibility: item.visibility / 1000,
 
-    cloudiness: item.cloud,
+    cloudiness: item.clouds.all,
 
-    rainChance: item.chance_of_rain,
+    rainChance: Math.round(item.pop * 100),
 
-    snowChance: item.chance_of_snow,
+    description: item.weather[0].description,
 
-    precipitation: item.precip_mm,
-
-    uvIndex: item.uv,
-
-    gustSpeed: item.gust_kph,
-
-    description: item.condition?.text || "",
-
-    icon: item.condition?.icon
-      ? item.condition.icon.startsWith("http")
-        ? item.condition.icon
-        : `https:${item.condition.icon}`
-      : "",
-
-    isDay: item.is_day === 1,
+    icon: item.weather[0].icon,
   }));
 };
 
@@ -292,8 +274,6 @@ export const getWeatherData = async (city) => {
     );
 
     const weather = weatherResponse.data;
-    const hourlyForecast = await getHourlyWeather(city);
-    console.log("Hourly data from service : ",hourlyForecast);
 
     // Forecast
     const forecastResponse = await axios.get(
@@ -318,10 +298,13 @@ export const getWeatherData = async (city) => {
       weather.coord.lat,
       weather.coord.lon
     );
+
     return {
       ...formatCurrentWeather(weather, location),
 
-      hourlyForecast,
+      hourlyForecast: formatHourlyForecast(
+        forecastResponse.data.list
+      ),
 
       dailyForecast: formatDailyForecast(
         forecastResponse.data.list
@@ -418,70 +401,3 @@ export const getWeatherDataByCoordinates = async (
 
 export const getWeatherIcon = (iconCode) =>
   `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
-
-/* ==============================
-   Get Hourly Weather
-   WeatherAPI
-================================= */
-
-export const getHourlyWeather = async (city) => {
-  try {
-    if (!WEATHERAPI_KEY) {
-      throw new Error(
-        "WeatherAPI key is missing."
-      );
-    }
-
-    const response = await axios.get(
-      `${WEATHERAPI_BASE_URL}/forecast.json`,
-      {
-        params: {
-          key: WEATHERAPI_KEY,
-          q: city,
-          days: 1,
-          aqi: "yes",
-          alerts: "yes",
-        },
-      }
-    );
-    const data = response.data;
-    const hourly =
-      data.forecast?.forecastday?.[0]?.hour || [];
-    // console.log("Hourly response : ",formatHourlyForecast(hourly));
-    return formatHourlyForecast(hourly);
-    
-  } catch (error) {
-    console.error(
-      "WeatherAPI hourly error:",
-      error
-    );
-
-    if (error.response?.status === 400) {
-      throw new Error(
-        "Invalid city name."
-      );
-    }
-
-    if (error.response?.status === 401) {
-      throw new Error(
-        "Invalid WeatherAPI key."
-      );
-    }
-
-    if (error.response?.status === 403) {
-      throw new Error(
-        "WeatherAPI access denied or quota exceeded."
-      );
-    }
-
-    if (error.response?.status === 429) {
-      throw new Error(
-        "WeatherAPI request limit exceeded."
-      );
-    }
-
-    throw new Error(
-      "Unable to fetch hourly weather."
-    );
-  }
-};
