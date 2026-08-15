@@ -22,6 +22,7 @@ const getGeminiAI = () => {
     }
 
     console.log("Gemini API key loaded.");
+    
     console.log("API key length:", apiKey.length);
 
     ai = new GoogleGenAI({
@@ -423,7 +424,7 @@ Instructions:
 
       const response =
         await geminiAI.models.generateContent({
-          model: "gemini-2.5-flash-lite",
+          model: "gemini-3.5-flash-lite",
           contents: prompt,
         });
 

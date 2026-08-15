@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import "./App.css";
 import ThemeToggle from "./components/ThemeToggle";
@@ -19,6 +19,8 @@ import {
   getWeatherDataByCoordinates,
   getHourlyWeather,
 } from "./services/weatherService";
+
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 
 function WeatherPage({ weather, setWeather }) {
   // const [weather, setWeather] = useState(null);
@@ -183,7 +185,7 @@ const fetchWeather = async (cityName) => {
 
       {locationPermission === "granted" && (
         <div className="location-success">
-          <p>📍 Showing weather for your current location</p>
+          <p>📍 Showing weather for your current location <strong>{city}</strong></p>
         </div>
       )}
 
@@ -232,8 +234,21 @@ const fetchWeather = async (cityName) => {
 
 export default function App() {
   const [weather, setWeather] = useState(null);
+
+  const [showLoading, setShowLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setShowLoading(false);
+  }, []);
   return (
     <>
+      {/* First Application Loading */}
+
+      {showLoading && (
+        <LoadingScreen
+          onComplete={handleLoadingComplete}
+        />
+      )}
       <Routes>
         <Route
           path="/"
