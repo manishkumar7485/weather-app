@@ -62,11 +62,9 @@ const WeatherMap = ({ weather }) => {
         </h2>
 
         <div className="map-error">
-
           <p>
             Location coordinates are unavailable.
           </p>
-
         </div>
 
       </div>
@@ -75,12 +73,22 @@ const WeatherMap = ({ weather }) => {
 
 
   /* ==========================================
-     Google Maps External Link
+     Google Maps Location URL
   ========================================== */
 
   const googleMapsUrl =
     `https://www.google.com/maps/search/?api=1` +
     `&query=${latitude},${longitude}`;
+
+
+  /* ==========================================
+     Google Maps Directions URL
+  ========================================== */
+
+  const directionsUrl =
+    `https://www.google.com/maps/dir/?api=1` +
+    `&destination=${latitude},${longitude}` +
+    `&travelmode=driving`;
 
 
   return (
@@ -99,8 +107,7 @@ const WeatherMap = ({ weather }) => {
           </h2>
 
           <p>
-            {weather.city ||
-              "Current Location"}
+            {weather.city || "Current Location"}
           </p>
 
         </div>
@@ -127,21 +134,15 @@ const WeatherMap = ({ weather }) => {
           latitude,
           longitude,
         ]}
-
         zoom={11}
-
         scrollWheelZoom={false}
-
         className="map"
       >
 
         {/* OpenStreetMap */}
 
         <TileLayer
-          attribution="
-            &copy; OpenStreetMap contributors
-          "
-
+          attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
@@ -177,8 +178,7 @@ const WeatherMap = ({ weather }) => {
 
                 <strong>
                   🌡️{" "}
-                  {weather.temperature ??
-                    "--"}°C
+                  {weather.temperature ?? "--"}°C
                 </strong>
 
                 <span>
@@ -193,20 +193,17 @@ const WeatherMap = ({ weather }) => {
 
                 <span>
                   💧{" "}
-                  {weather.humidity ??
-                    "--"}%
+                  {weather.humidity ?? "--"}%
                 </span>
 
                 <span>
                   💨{" "}
-                  {weather.windSpeed ??
-                    "--"} m/s
+                  {weather.windSpeed ?? "--"} m/s
                 </span>
 
                 <span>
                   ☁️{" "}
-                  {weather.cloudiness ??
-                    "--"}%
+                  {weather.cloudiness ?? "--"}%
                 </span>
 
               </div>
@@ -218,6 +215,24 @@ const WeatherMap = ({ weather }) => {
         </Marker>
 
       </MapContainer>
+
+
+      {/* ======================================
+          Directions Button
+      ====================================== */}
+
+      <div className="map-actions">
+
+        <a
+          href={directionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="directions-button"
+        >
+          📍 Get Directions
+        </a>
+
+      </div>
 
     </div>
   );

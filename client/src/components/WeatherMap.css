@@ -1,255 +1,75 @@
 /* ==========================================
-   Weather Map
+   Map Actions
 ========================================== */
 
-.weather-map {
-  width: 100%;
-  margin-top: 25px;
-}
-
-
-/* ==========================================
-   Header
-========================================== */
-
-.map-header {
+.map-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 15px;
-
-  margin-bottom: 15px;
-}
-
-.map-header h2 {
-  margin: 0;
-
-  color: white;
-
-  font-size: 1.3rem;
-
-  font-weight: 600;
-}
-
-.map-header p {
-  margin: 4px 0 0;
-
-  color: rgba(255, 255, 255, 0.7);
-
-  font-size: 13px;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 
 /* ==========================================
-   Open Maps Button
+   Directions Button
 ========================================== */
 
-.maps-button {
+.directions-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  padding: 10px 16px;
+  gap: 8px;
 
-  border-radius: 12px;
+  padding: 12px 24px;
 
-  background:
-    rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
 
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    135deg,
+    #00c6ff,
+    #0072ff
+  );
 
-  color: white;
+  color: #fff;
 
   text-decoration: none;
 
-  font-size: 13px;
+  font-size: 15px;
 
   font-weight: 600;
 
-  transition: 0.3s;
-}
-
-.maps-button:hover {
-  background:
-    rgba(255, 255, 255, 0.25);
-
-  transform:
-    translateY(-2px);
-}
-
-
-/* ==========================================
-   Leaflet Map
-========================================== */
-
-.map {
-  width: 100%;
-
-  height: 450px;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.15);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
 
   box-shadow:
-    0 15px 35px
-    rgba(0, 0, 0, 0.25);
+    0 8px 20px rgba(
+      0,
+      114,
+      255,
+      0.25
+    );
 }
 
 
-/* ==========================================
-   Leaflet Popup
-========================================== */
+.directions-button:hover {
+  transform: translateY(-2px);
 
-.weather-popup {
-  min-width: 190px;
+  box-shadow:
+    0 12px 25px rgba(
+      0,
+      114,
+      255,
+      0.4
+    );
 
-  color: #222;
-
-  font-size: 13px;
-}
-
-.weather-popup h3 {
-  margin: 0;
-
-  font-size: 16px;
-}
-
-.weather-popup p {
-  margin: 3px 0 10px;
-
-  color: #666;
+  opacity: 0.95;
 }
 
 
-/* ==========================================
-   Popup Weather
-========================================== */
-
-.popup-weather {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 4px;
-
-  margin-bottom: 10px;
-}
-
-.popup-weather strong {
-  font-size: 18px;
-}
-
-.popup-weather span {
-  text-transform: capitalize;
-}
-
-
-/* ==========================================
-   Popup Details
-========================================== */
-
-.popup-details {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 4px;
-
-  font-size: 12px;
-
-  color: #555;
-}
-
-
-/* ==========================================
-   Error
-========================================== */
-
-.map-error {
-  width: 100%;
-
-  height: 450px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 20px;
-
-  background:
-    rgba(255, 255, 255, 0.1);
-
-  color: white;
-
-  text-align: center;
-}
-
-.map-error p {
-  margin: 0;
-
-  font-weight: 600;
-}
-
-
-/* ==========================================
-   Leaflet Controls
-========================================== */
-
-.leaflet-control-zoom a {
-  color: #222 !important;
-}
-
-.leaflet-popup-content-wrapper {
-  border-radius: 12px;
-}
-
-.leaflet-popup-content {
-  margin: 12px;
-}
-
-
-/* ==========================================
-   Tablet
-========================================== */
-
-@media (max-width: 768px) {
-
-  .map-header {
-    align-items: flex-start;
-  }
-
-  .map-header h2 {
-    font-size: 1.15rem;
-  }
-
-  .maps-button {
-    padding: 8px 12px;
-
-    font-size: 12px;
-  }
-
-  .map {
-    height: 380px;
-
-    border-radius: 18px;
-  }
-
-  .map-error {
-    height: 380px;
-  }
+.directions-button:active {
+  transform: translateY(0);
 }
 
 
@@ -257,31 +77,18 @@
    Mobile
 ========================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
-  .map-header {
-    flex-direction: column;
-
-    gap: 10px;
+  .map-actions {
+    margin-top: 12px;
   }
 
-  .maps-button {
+  .directions-button {
     width: 100%;
+
+    padding: 12px 18px;
+
+    font-size: 14px;
   }
 
-  .map {
-    height: 320px;
-
-    border-radius: 15px;
-  }
-
-  .map-error {
-    height: 320px;
-
-    border-radius: 15px;
-  }
-
-  .weather-popup {
-    min-width: 160px;
-  }
 }
