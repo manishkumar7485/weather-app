@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./AIChat.css";
 
-// import { sendChatMessage } from "../../services/chatService";
-import { sendChatMessage } from "../../services/OpenAIService";
+import { sendChatMessage } from "../../services/chatService";
 
 import { IoSend } from "react-icons/io5";
 
@@ -18,7 +17,7 @@ export default function AIChat({ weather, onClose }) {
 
       text:
         "👋 Hello!\n\n" +
-        "I'm your AI Weather Assistant.\n\n" +
+        "I'm Nimbus AI your Weather Assistant.\n\n" +
         "Ask me anything about today's weather.",
 
       time: new Date().toLocaleTimeString([], {

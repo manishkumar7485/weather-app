@@ -1,0 +1,16 @@
+{
+  "name": "mycityweather-api",
+  "version": "1.0.0",
+  "description": "Nimbus AI backend for MyCityWeather",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^5.0.0"
+  }
+}
