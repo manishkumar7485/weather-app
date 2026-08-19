@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./AIChat.css";
 
-import { sendChatMessage } from "../../services/chatService";
+// import { sendChatMessage } from "../../services/chatService";
+import { sendChatMessage } from "../../services/OpenAIService";
 
 import { IoSend } from "react-icons/io5";
 

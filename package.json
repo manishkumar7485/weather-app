@@ -6,6 +6,7 @@
   "dependencies": {
     "@google/genai": "^2.16.0",
     "@google/generative-ai": "^0.24.1",
+    "@huggingface/inference": "^4.13.27",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",

@@ -1,14 +1,14 @@
-import OpenAI from "openai";
+import { InferenceClient } from "@huggingface/inference";
 
-const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const apiKey = process.env.REACT_APP_HUGGINGFACEMODEL_KEY;
 
 if (!apiKey) {
   console.error(
-    "Missing REACT_APP_OPENAI_API_KEY in your .env file."
+    "Missing REACT_APP_HUGGINGFACEMODEL_KEY in your .env file."
   );
 }
 
-const client = new OpenAI({
+const client = new InferenceClient({
   apiKey,
   dangerouslyAllowBrowser: true,
 });
@@ -19,9 +19,8 @@ export const sendChatMessage = async (message, weather) => {
       return "Please enter a question.";
     }
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-4.1-mini",
-
+    const completion = await client.chatCompletion({
+      model: "Qwen/Qwen2.5-3B-Instruct",
       messages: [
         {
           role: "system",
@@ -30,7 +29,7 @@ You are Weather AI.
 
 Answer only weather-related questions.
 
-Current Weather
+Current Weather:
 
 City: ${weather?.city || "Unknown"}
 Country: ${weather?.country || "Unknown"}
@@ -48,18 +47,16 @@ Weather: ${weather?.description ?? "Unknown"}
 Air Quality:
 ${weather?.airQuality?.quality || "Unavailable"}
 
-Keep answers friendly and concise.
-          `,
+Keep answers friendly, concise, and easy to understand.
+`,
         },
-
         {
           role: "user",
           content: message,
         },
       ],
-
       temperature: 0.7,
-      max_completion_tokens: 300,
+      max_tokens: 100,
     });
 
     return (
@@ -67,14 +64,14 @@ Keep answers friendly and concise.
       "No response received."
     );
   } catch (error) {
-    console.error("OpenAI Error:", error);
+    console.error("Hugging Face Error:", error);
 
-    if (error.status === 401) {
-      return "Invalid OpenAI API key.";
+    if (error?.status === 401) {
+      return "Invalid Hugging Face API key.";
     }
 
-    if (error.status === 429) {
-      return "OpenAI quota exceeded.";
+    if (error?.status === 429) {
+      return "Hugging Face rate limit exceeded.";
     }
 
     return "Sorry, I couldn't generate a response.";
