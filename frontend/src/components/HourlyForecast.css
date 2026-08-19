@@ -1,0 +1,407 @@
+/* ==========================================
+   Hourly Forecast
+========================================== */
+
+.hourly-container {
+  margin-top: 25px;
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+.hourly-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.hourly-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   Horizontal Scroll
+========================================== */
+
+.hourly-scroll {
+  display: flex;
+  gap: 15px;
+
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 5px 5px 15px;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.hourly-scroll::-webkit-scrollbar {
+  height: 7px;
+}
+
+.hourly-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hourly-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+}
+
+.hourly-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ==========================================
+   Hour Card
+========================================== */
+
+.hour-card {
+  flex: 0 0 125px;
+
+  min-width: 125px;
+
+  padding: 16px 12px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  color: white;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* Desktop Hover */
+
+@media (hover: hover) {
+
+  .hour-card:hover {
+    transform: translateY(-6px);
+
+    background: rgba(255, 255, 255, 0.2);
+
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+
+/* ==========================================
+   Time
+========================================== */
+
+.hour-time {
+  margin: 0 0 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================
+   Weather Icon
+========================================== */
+
+.hour-icon {
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin: 0 auto;
+}
+
+
+/* ==========================================
+   Temperature
+========================================== */
+
+.hour-temp {
+  margin: 6px 0;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: white;
+}
+
+
+/* ==========================================
+   Feels Like
+========================================== */
+
+.hour-feels {
+  margin: 3px 0;
+
+  font-size: 12px;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* ==========================================
+   Rain Chance
+========================================== */
+
+.hour-rain {
+  margin: 8px 0 4px;
+
+  color: #8ed8ff;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   Description
+========================================== */
+
+.hour-desc {
+  margin: 7px 0;
+
+  font-size: 12px;
+
+  line-height: 1.3;
+
+  text-transform: capitalize;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  min-height: 30px;
+}
+
+
+/* ==========================================
+   Extra Weather Information
+========================================== */
+
+.hour-extra {
+  margin: 4px 0;
+
+  font-size: 11px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================
+   Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+  .hourly-container {
+    margin-top: 22px;
+  }
+
+  .hourly-scroll {
+    gap: 12px;
+  }
+
+  .hour-card {
+    flex-basis: 115px;
+    min-width: 115px;
+
+    padding: 14px 10px;
+  }
+
+  .hour-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .hour-temp {
+    font-size: 22px;
+  }
+
+}
+
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media (max-width: 768px) {
+
+  .hourly-container {
+    margin-top: 20px;
+  }
+
+  .hourly-header h2 {
+    font-size: 1.15rem;
+  }
+
+  .hourly-scroll {
+    gap: 10px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    scroll-snap-type: x proximity;
+  }
+
+  .hour-card {
+    flex: 0 0 105px;
+
+    min-width: 105px;
+
+    padding: 13px 9px;
+
+    border-radius: 16px;
+
+    scroll-snap-align: start;
+  }
+
+  .hour-time {
+    font-size: 12px;
+  }
+
+  .hour-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hour-temp {
+    font-size: 20px;
+  }
+
+  .hour-feels {
+    font-size: 11px;
+  }
+
+  .hour-rain {
+    font-size: 12px;
+  }
+
+  .hour-desc {
+    font-size: 11px;
+  }
+
+  .hour-extra {
+    font-size: 10px;
+  }
+
+}
+
+
+/* ==========================================
+   Small Phones
+========================================== */
+
+@media (max-width: 480px) {
+
+  .hourly-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .hourly-scroll {
+    gap: 8px;
+  }
+
+  .hour-card {
+    flex: 0 0 95px;
+
+    min-width: 95px;
+
+    padding: 11px 7px;
+
+    border-radius: 14px;
+  }
+
+  .hour-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hour-temp {
+    font-size: 19px;
+  }
+
+  .hour-rain {
+    font-size: 11px;
+  }
+
+}
+
+
+/* ==========================================
+   Extra Small Phones
+========================================== */
+
+@media (max-width: 360px) {
+
+  .hourly-header h2 {
+    font-size: 1rem;
+  }
+
+  .hour-card {
+    flex: 0 0 88px;
+
+    min-width: 88px;
+
+    padding: 10px 6px;
+  }
+
+  .hour-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hour-temp {
+    font-size: 18px;
+  }
+
+  .hour-time {
+    font-size: 11px;
+  }
+
+  .hour-desc {
+    font-size: 10px;
+  }
+
+}
