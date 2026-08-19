@@ -1,0 +1,11 @@
+{
+  "remoteName": "origin",
+  "projects": [
+    {
+      "id": "prj_yvzF8oVgCALyMiU2p0yhxTfnkIDo",
+      "name": "weather-app",
+      "directory": "server",
+      "orgId": "team_vjEYobLQtGYDByKTgHM76Khk"
+    }
+  ]
+}

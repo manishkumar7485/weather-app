@@ -1,0 +1,260 @@
+.weather-background{
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-100;
+transition:.5s;
+}
+
+/* Background */
+
+.sunny{
+background:linear-gradient(180deg,#4facfe,#00c6fb);
+}
+
+.cloudy{
+background:linear-gradient(180deg,#8fa3bf,#d7dde8);
+}
+
+.rain{
+background:linear-gradient(180deg,#2c3e50,#4ca1af);
+}
+
+.storm{
+background:linear-gradient(180deg,#16222a,#3a6073);
+}
+
+.snow{
+background:linear-gradient(180deg,#dfe9f3,#ffffff);
+}
+
+.fog{
+background:linear-gradient(180deg,#cfd9df,#e2ebf0);
+}
+
+.night{
+background:linear-gradient(180deg,#020111,#191970);
+}
+
+/* Moving Weather Icons */
+
+.weather-bg-icon{
+position:absolute;
+width:220px;
+opacity:.18;
+pointer-events:none;
+user-select:none;
+}
+
+.icon-0{
+top:10%;
+left:-250px;
+animation:
+move1 35s linear infinite,
+floatIcon 5s ease-in-out infinite;
+}
+
+.icon-1{
+top:45%;
+left:110%;
+animation:
+move2 50s linear infinite,
+floatIcon 7s ease-in-out infinite;
+}
+
+.icon-2{
+top:70%;
+left:-300px;
+animation:
+move3 65s linear infinite,
+floatIcon 6s ease-in-out infinite;
+}
+
+@keyframes move1{
+
+from{
+left:-250px;
+}
+
+to{
+left:110%;
+}
+
+}
+
+@keyframes move2{
+
+from{
+left:110%;
+}
+
+to{
+left:-250px;
+}
+
+}
+
+@keyframes move3{
+
+from{
+left:-350px;
+}
+
+to{
+left:110%;
+}
+
+}
+
+@keyframes floatIcon{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/* Rain */
+
+.rain-drop{
+
+position:absolute;
+top:-20px;
+
+width:2px;
+height:18px;
+
+background:rgba(255,255,255,.8);
+
+animation:rain linear infinite;
+
+}
+
+@keyframes rain{
+
+to{
+
+transform:translateY(120vh);
+
+}
+
+}
+
+/* Snow */
+
+.snow-flake{
+
+position:absolute;
+top:-10px;
+
+width:8px;
+height:8px;
+
+background:white;
+
+border-radius:50%;
+
+animation:snow 8s linear infinite;
+
+}
+
+@keyframes snow{
+
+to{
+
+transform:translateY(110vh) rotate(360deg);
+
+}
+
+}
+
+/* Stars */
+
+.star{
+
+position:absolute;
+
+width:2px;
+height:2px;
+
+background:white;
+
+border-radius:50%;
+
+animation:twinkle 2s infinite;
+
+}
+
+@keyframes twinkle{
+
+50%{
+
+opacity:.2;
+
+}
+
+}
+
+/* Lightning */
+
+.lightning{
+
+position:absolute;
+inset:0;
+
+animation:flash 6s infinite;
+
+}
+
+@keyframes flash{
+
+0%,95%,100%{
+
+background:transparent;
+
+}
+
+96%{
+
+background:rgba(255,255,255,.8);
+
+}
+
+98%{
+
+background:rgba(255,255,255,.3);
+
+}
+
+}
+
+/* Overlay */
+
+.overlay{
+
+position:absolute;
+inset:0;
+
+background:rgba(0,0,0,.15);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.weather-bg-icon{
+
+width:140px;
+
+}
+
+}
