@@ -15,7 +15,7 @@ import axios from "axios";
 
 const CHAT_API_URL =
   process.env.REACT_APP_CHAT_API_URL ||
-  "http://localhost:5000/api/chat";
+  "http://localhost:5000/api/chat" || "https://scaling-invention-p77gx6r67wrfr6g-5000.app.github.dev/";
 
 
 /* =========================================================
