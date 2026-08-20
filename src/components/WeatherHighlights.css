@@ -29,15 +29,15 @@ gap:18px;
 
 .highlight-card{
 
-background:rgba(255,255,255,.12);
+background: var(--card-bg);
+color: var(--text-color);
+border: 1px solid var(--card-border);
 
 backdrop-filter:blur(18px);
 
 border-radius:20px;
 
 padding:22px;
-
-color:white;
 
 transition:.3s;
 

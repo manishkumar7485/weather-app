@@ -6,9 +6,9 @@
 
     backdrop-filter:blur(16px);
 
-    background:rgba(255,255,255,.15);
-
-    color:white;
+    background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--card-border);
 }
 
 .aqi-header{

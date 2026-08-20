@@ -13,7 +13,9 @@
 
   font-size: 22px;
 
-  background: rgba(255,255,255,.2);
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--card-border);
   backdrop-filter: blur(12px);
 
   transition: .3s;

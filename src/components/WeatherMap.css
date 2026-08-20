@@ -1,94 +1,1083 @@
-/* ==========================================
-   Map Actions
-========================================== */
+/* =========================================================
+   WEATHER MAP
+========================================================= */
+
+.weather-map {
+  width: 100%;
+  margin-top: 25px;
+
+  color: var(--text-color);
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.map {
+  width: 100%;
+  height: 450px;
+
+  margin-top: 15px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   MAP HEADER
+========================================================= */
+
+.map-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  width: 100%;
+}
+
+.map-header h2 {
+  margin: 0;
+
+  color: var(--text-color);
+
+  font-size: 1.3rem;
+
+  font-weight: 600;
+}
+
+.map-header p {
+  margin-top: 5px;
+
+  color: var(--secondary-text);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   OPEN MAPS BUTTON
+========================================================= */
+
+.maps-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  background: var(--button-bg);
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.maps-button:hover {
+  background: var(--button-hover);
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   MAP ACTIONS
+========================================================= */
 
 .map-actions {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+
   margin-top: 15px;
 }
 
 
-/* ==========================================
-   Directions Button
-========================================== */
+/* =========================================================
+   DIRECTIONS BUTTON
+========================================================= */
 
 .directions-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 
-  gap: 8px;
+  padding: 14px 20px;
 
-  padding: 12px 24px;
+  border: none;
 
-  border-radius: 30px;
+  border-radius: 12px;
 
-  background: linear-gradient(
-    135deg,
-    #00c6ff,
-    #0072ff
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #00c6ff,
+      #0072ff
+    );
 
-  color: #fff;
-
-  text-decoration: none;
+  color: #ffffff;
 
   font-size: 15px;
 
   font-weight: 600;
 
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
+  cursor: pointer;
 
-  box-shadow:
-    0 8px 20px rgba(
-      0,
-      114,
-      255,
-      0.25
-    );
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
 }
 
-
-.directions-button:hover {
+.directions-button:hover:not(:disabled) {
   transform: translateY(-2px);
 
   box-shadow:
-    0 12px 25px rgba(
-      0,
-      114,
-      255,
-      0.4
-    );
-
-  opacity: 0.95;
+    0 8px 20px
+    rgba(0, 114, 255, 0.3);
 }
 
-
-.directions-button:active {
+.directions-button:active:not(:disabled) {
   transform: translateY(0);
 }
 
+.directions-button:disabled {
+  opacity: 0.65;
 
-/* ==========================================
-   Mobile
-========================================== */
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   HIDE DIRECTIONS BUTTON
+========================================================= */
+
+.directions-button.hide {
+  background:
+    rgba(255, 255, 255, 0.12);
+
+  border:
+    1px solid var(--card-border);
+}
+
+.directions-button.hide:hover {
+  background:
+    rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   DIRECTIONS PANEL
+========================================================= */
+
+.directions-panel {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background: var(--card-bg);
+
+  border:
+    1px solid var(--card-border);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: var(--shadow);
+
+  color: var(--text-color);
+
+  animation:
+    directionsSlideIn 0.35s ease;
+}
+
+@keyframes directionsSlideIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   DIRECTIONS HEADER
+========================================================= */
+
+.directions-header {
+  margin-bottom: 5px;
+}
+
+.directions-header h3 {
+  margin: 0 0 6px;
+
+  color: var(--text-color);
+
+  font-size: 18px;
+
+  font-weight: 600;
+}
+
+.directions-header p {
+  margin: 0;
+
+  color: var(--secondary-text);
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ROUTE LOCATION
+========================================================= */
+
+.route-location {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.route-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 198, 255, 0.15);
+
+  border:
+    1px solid
+    rgba(0, 198, 255, 0.25);
+
+  font-size: 20px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.route-icon.current {
+  background:
+    rgba(0, 198, 255, 0.15);
+}
+
+.route-icon.destination {
+  background:
+    rgba(0, 114, 255, 0.15);
+
+  border-color:
+    rgba(0, 114, 255, 0.25);
+}
+
+
+/* =========================================================
+   ROUTE LOCATION TEXT
+========================================================= */
+
+.route-location > div:last-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.route-location span {
+  color: var(--muted-text);
+
+  font-size: 12px;
+}
+
+.route-location strong {
+  color: var(--text-color);
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ROUTE CONNECTOR
+========================================================= */
+
+.route-line {
+  margin-left: 20px;
+
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+
+  color: var(--accent);
+
+  font-size: 22px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ROUTE SUMMARY
+========================================================= */
+
+.route-summary {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 20px;
+
+  padding: 16px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(0, 198, 255, 0.08);
+
+  border:
+    1px solid
+    rgba(0, 198, 255, 0.15);
+}
+
+.summary-item {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   SUMMARY ICON
+========================================================= */
+
+.summary-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 198, 255, 0.15);
+
+  border:
+    1px solid
+    rgba(0, 198, 255, 0.2);
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   SUMMARY TEXT
+========================================================= */
+
+.summary-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.summary-info span {
+  color: var(--muted-text);
+
+  font-size: 12px;
+
+  line-height: 1.3;
+}
+
+.summary-info strong {
+  color: var(--text-color);
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SUMMARY DIVIDER
+========================================================= */
+
+.summary-divider {
+  width: 1px;
+
+  height: 42px;
+
+  flex-shrink: 0;
+
+  background:
+    var(--card-border);
+}
+
+
+/* =========================================================
+   ROUTE LOADING
+========================================================= */
+
+.route-loading {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(0, 114, 255, 0.08);
+
+  border:
+    1px solid
+    rgba(0, 114, 255, 0.12);
+
+  color: var(--secondary-text);
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   ROUTE SPINNER
+========================================================= */
+
+.route-spinner {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  border:
+    3px solid
+    rgba(255, 255, 255, 0.2);
+
+  border-top-color:
+    var(--accent);
+
+  border-radius: 50%;
+
+  animation:
+    routeSpin 0.8s linear infinite;
+}
+
+@keyframes routeSpin {
+
+  to {
+    transform:
+      rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   LOCATION / ROUTE ERROR
+========================================================= */
+
+.location-error {
+  margin-top: 15px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 70, 70, 0.12);
+
+  border:
+    1px solid
+    rgba(255, 70, 70, 0.2);
+
+  color: #ffb5b5;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   DETECT LOCATION BUTTON
+========================================================= */
+
+.detect-location {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 12px;
+
+  border:
+    1px solid var(--card-border);
+
+  border-radius: 10px;
+
+  background:
+    var(--input-bg);
+
+  color:
+    var(--text-color);
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.detect-location:hover {
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* =========================================================
+   RECALCULATE ROUTE
+========================================================= */
+
+.recalculate-button {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 12px;
+
+  border:
+    1px solid var(--card-border);
+
+  border-radius: 10px;
+
+  background:
+    var(--input-bg);
+
+  color:
+    var(--text-color);
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.recalculate-button:hover {
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* =========================================================
+   START NAVIGATION
+========================================================= */
+
+.start-navigation {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 15px;
+
+  padding: 14px 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00c853,
+      #009624
+    );
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.start-navigation:hover {
+  color: #ffffff;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 200, 83, 0.3);
+}
+
+.start-navigation:active {
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   CURRENT LOCATION MARKER
+========================================================= */
+
+.current-location-marker {
+  background: transparent !important;
+
+  border: none !important;
+}
+
+.current-location-dot {
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  z-index: 10;
+}
+
+.current-location-pulse {
+  position: absolute;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 114, 255, 0.18);
+
+  border:
+    2px solid
+    rgba(0, 114, 255, 0.5);
+
+  animation:
+    locationPulse 1.8s infinite;
+}
+
+.current-location-dot span {
+  position: relative;
+
+  z-index: 2;
+}
+
+@keyframes locationPulse {
+
+  0% {
+    transform: scale(0.8);
+
+    opacity: 0.9;
+  }
+
+  70% {
+    transform: scale(1.5);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.5);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   DESTINATION MARKER
+========================================================= */
+
+.destination-marker {
+  background: transparent !important;
+
+  border: none !important;
+}
+
+.destination-marker-pin {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+
+  filter:
+    drop-shadow(
+      0 3px 5px rgba(0, 0, 0, 0.3)
+    );
+}
+
+
+/* =========================================================
+   WEATHER POPUP
+========================================================= */
+
+.weather-popup {
+  min-width: 180px;
+}
+
+.weather-popup h3 {
+  margin: 0 0 5px;
+
+  color: #111827;
+
+  font-size: 16px;
+}
+
+.weather-popup p {
+  margin: 0 0 10px;
+
+  color: #4b5563;
+
+  font-size: 13px;
+}
+
+.popup-weather {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.popup-weather strong {
+  color: #111827;
+
+  font-size: 18px;
+}
+
+.popup-weather span {
+  color: #4b5563;
+
+  text-transform: capitalize;
+
+  font-size: 13px;
+}
+
+.popup-details {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  margin-top: 10px;
+
+  padding-top: 8px;
+
+  border-top:
+    1px solid #e5e7eb;
+
+  color: #374151;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   MAP ERROR
+========================================================= */
+
+.map-error {
+  margin-top: 15px;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  background:
+    var(--card-bg);
+
+  border:
+    1px solid var(--card-border);
+
+  color:
+    var(--text-color);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+/* =========================================================
+   LEAFLET Z-INDEX FIX
+========================================================= */
+
+.weather-map .leaflet-container {
+  z-index: 1;
+}
+
+.weather-map .leaflet-control {
+  z-index: 500;
+}
+
+.weather-map .leaflet-popup {
+  z-index: 1000;
+}
+
+
+/* =========================================================
+   MOBILE - 768px
+========================================================= */
 
 @media (max-width: 768px) {
 
-  .map-actions {
-    margin-top: 12px;
+  .weather-map {
+    margin-top: 20px;
   }
 
-  .directions-button {
+  .map-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .map-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .maps-button {
+    width: 100%;
+  }
+
+  .map {
+    height: 380px;
+
+    border-radius: 16px;
+  }
+
+  .directions-panel {
+    padding: 18px;
+  }
+
+  .route-summary {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+  }
+
+  .summary-divider {
     width: 100%;
 
-    padding: 12px 18px;
+    height: 1px;
+  }
 
+  .summary-item {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE - 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .map {
+    height: 320px;
+
+    border-radius: 14px;
+  }
+
+  .directions-panel {
+    padding: 15px;
+
+    border-radius: 15px;
+  }
+
+  .directions-header h3 {
+    font-size: 16px;
+  }
+
+  .directions-header p {
+    font-size: 12px;
+  }
+
+  .route-location {
+    gap: 10px;
+
+    margin-top: 15px;
+  }
+
+  .route-icon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 18px;
+  }
+
+  .route-location strong {
     font-size: 14px;
+  }
+
+  .summary-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 18px;
+  }
+
+  .summary-info strong {
+    font-size: 16px;
+  }
+
+  .start-navigation,
+  .directions-button,
+  .recalculate-button {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .map {
+    height: 280px;
+  }
+
+  .directions-panel {
+    padding: 12px;
+  }
+
+  .route-summary {
+    padding: 12px;
+  }
+
+  .route-location strong {
+    font-size: 13px;
+  }
+
+  .summary-info span {
+    font-size: 11px;
+  }
+
+  .summary-info strong {
+    font-size: 15px;
   }
 
 }

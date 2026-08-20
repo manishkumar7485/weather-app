@@ -1,6 +1,11 @@
-/* ==========================
-   Reset
-========================== */
+/* =========================================================
+   MyCityWeather - Global CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *,
 *::before,
@@ -10,197 +15,741 @@
   box-sizing: border-box;
 }
 
-/* ==========================
-   Theme Variables
-========================== */
+
+/* =========================================================
+   THEME VARIABLES - LIGHT
+========================================================= */
 
 :root {
-  --bg-gradient: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+
+  /* Page */
+  --bg-gradient:
+    linear-gradient(
+      135deg,
+      #74b9ff 0%,
+      #0984e3 100%
+    );
+
   --bg-color: #eef5ff;
 
+  /* Cards */
   --card-bg: rgba(255, 255, 255, 0.18);
-  --card-border: rgba(255, 255, 255, 0.25);
 
+  --card-bg-solid: #ffffff;
+
+  --card-border:
+    rgba(255, 255, 255, 0.25);
+
+  /* Text */
   --text-color: #ffffff;
-  --secondary-text: rgba(255, 255, 255, 0.8);
 
-  --shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  --primary-text: #1f2937;
 
+  --secondary-text:
+    rgba(255, 255, 255, 0.8);
+
+  --muted-text:
+    rgba(255, 255, 255, 0.65);
+
+  /* Inputs */
+  --input-bg:
+    rgba(255, 255, 255, 0.15);
+
+  --input-border:
+    rgba(255, 255, 255, 0.25);
+
+  --placeholder-color:
+    rgba(255, 255, 255, 0.65);
+
+  /* Buttons */
+  --button-bg: #0072ff;
+
+  --button-hover: #005edb;
+
+  --button-text: #ffffff;
+
+  /* Accent */
+  --accent: #00c6ff;
+
+  --accent-secondary: #0072ff;
+
+  /* Shadow */
+  --shadow:
+    0 12px 30px
+    rgba(0, 0, 0, 0.15);
+
+  /* Error */
+  --error-bg:
+    rgba(255, 80, 80, 0.15);
+
+  --error-text: #ffdddd;
+
+  /* Success */
+  --success-bg:
+    rgba(0, 255, 128, 0.12);
+
+  --success-text: #d5ffe8;
+
+  /* Transition */
   --transition: 0.35s ease;
 }
 
-/* ==========================
-   Dark Theme
-========================== */
+
+/* =========================================================
+   DARK THEME
+========================================================= */
 
 [data-theme="dark"] {
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+  /* Page */
+  --bg-gradient:
+    linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #1e293b 100%
+    );
+
   --bg-color: #020617;
 
-  --card-bg: rgba(30, 41, 59, 0.55);
-  --card-border: rgba(255, 255, 255, 0.08);
 
+  /* Cards */
+  --card-bg:
+    rgba(30, 41, 59, 0.55);
+
+  --card-bg-solid: #111827;
+
+  --card-border:
+    rgba(255, 255, 255, 0.08);
+
+
+  /* Text */
   --text-color: #f8fafc;
+
+  --primary-text: #f8fafc;
+
   --secondary-text: #cbd5e1;
 
-  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --muted-text:
+    rgba(203, 213, 225, 0.65);
+
+
+  /* Inputs */
+  --input-bg:
+    rgba(255, 255, 255, 0.08);
+
+  --input-border:
+    rgba(255, 255, 255, 0.12);
+
+  --placeholder-color:
+    rgba(255, 255, 255, 0.5);
+
+
+  /* Buttons */
+  --button-bg: #0072ff;
+
+  --button-hover: #005edb;
+
+  --button-text: #ffffff;
+
+
+  /* Accent */
+  --accent: #00c6ff;
+
+  --accent-secondary: #0072ff;
+
+
+  /* Shadow */
+  --shadow:
+    0 12px 30px
+    rgba(0, 0, 0, 0.45);
+
+
+  /* Error */
+  --error-bg:
+    rgba(255, 80, 80, 0.12);
+
+  --error-text: #ffb3b3;
+
+
+  /* Success */
+  --success-bg:
+    rgba(0, 255, 128, 0.1);
+
+  --success-text: #b8ffd9;
 }
 
-/* ==========================
-   HTML & Body
-========================== */
+
+/* =========================================================
+   HTML
+========================================================= */
 
 html {
   scroll-behavior: smooth;
+
+  background:
+    var(--bg-gradient);
+
+  transition:
+    background 0.35s ease;
 }
 
+
+/* =========================================================
+   BODY
+========================================================= */
+
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
 
   -webkit-font-smoothing: antialiased;
+
   -moz-osx-font-smoothing: grayscale;
 
-  background: var(--bg-gradient);
+  background:
+    var(--bg-gradient);
+
+  background-color:
+    var(--bg-color);
+
   background-attachment: fixed;
 
-  color: var(--text-color);
+  color:
+    var(--text-color);
 
   min-height: 100vh;
 
+  width: 100%;
+
   overflow-x: hidden;
+
+  transition:
+    background 0.35s ease,
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#root {
+
+  min-height: 100vh;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  position: relative;
+
+  z-index: 2;
+
+  background:
+    transparent;
+
+  color:
+    var(--text-color);
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+
+/* =========================================================
+   GLOBAL TEXT
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+small,
+label {
+
+  transition:
+    color var(--transition);
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+
+  color:
+    var(--accent);
+
+  text-decoration: none;
+
+  transition:
+    color var(--transition);
+}
+
+
+a:hover {
+
+  color:
+    var(--accent-secondary);
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select {
+
+  background:
+    var(--input-bg);
+
+  color:
+    var(--text-color);
+
+  border:
+    1px solid var(--input-border);
+
+  outline: none;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+
+  color:
+    var(--placeholder-color);
+
+  opacity: 1;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+
+  border-color:
+    var(--accent);
+
+  box-shadow:
+    0 0 0 2px
+    rgba(0, 198, 255, 0.12);
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+button {
+
+  font-family: inherit;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    transform 0.25s ease;
+}
+
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+.glass {
+
+  background:
+    var(--card-bg);
+
+  border:
+    1px solid var(--card-border);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  border-radius:
+    22px;
+
+  box-shadow:
+    var(--shadow);
+
+  color:
+    var(--text-color);
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+/* =========================================================
+   COMMON CARD THEME
+========================================================= */
+
+.weather-card,
+.hour-card,
+.daily-card,
+.highlight-card,
+.weather-map,
+.air-quality-card,
+.weather-details,
+.weather-chart,
+.ai-chat {
+
+  color:
+    var(--text-color);
+
+  border-color:
+    var(--card-border);
+
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  background:
+    transparent;
+
+  color:
+    var(--text-color);
 
   transition:
     background var(--transition),
     color var(--transition);
 }
 
-/* ==========================
-   Root
-========================== */
 
-#root {
-  min-height: 100vh;
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+
   width: 100%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 1400px;
 
-  padding: 20px;
+  margin: 0 auto;
 
-  position: relative;
-  z-index: 2;
+  padding: 25px;
+
+  color:
+    var(--text-color);
 }
 
-/* ==========================
-   Selection
-========================== */
+
+/* =========================================================
+   APP TITLE
+========================================================= */
+
+.app-title {
+
+  color:
+    var(--text-color);
+
+  transition:
+    color var(--transition);
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
 
 ::selection {
-  background: rgba(255, 255, 255, 0.35);
-  color: #000;
+
+  background:
+    rgba(0, 198, 255, 0.35);
+
+  color:
+    #ffffff;
 }
 
-/* ==========================
-   Scrollbar
-========================== */
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
 ::-webkit-scrollbar {
+
   width: 8px;
+
+  height: 8px;
 }
+
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+
+  background:
+    transparent;
 }
+
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.35);
+
+  border-radius:
+    20px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.6);
+
+  background:
+    rgba(255, 255, 255, 0.6);
 }
+
 
 /* Firefox */
 
 * {
+
   scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(255, 255, 255, 0.35)
+    transparent;
 }
 
-/* ==========================
-   Glass Utility
-========================== */
 
-.glass {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
 
-  border-radius: 22px;
+.error-message {
 
-  box-shadow: var(--shadow);
+  background:
+    var(--error-bg);
 
-  transition: all var(--transition);
+  color:
+    var(--error-text);
+
+  border:
+    1px solid
+    rgba(255, 80, 80, 0.2);
+
+  padding:
+    12px 16px;
+
+  border-radius:
+    12px;
+
+  transition:
+    background var(--transition),
+    color var(--transition);
 }
 
-/* ==========================
-   Fade Animation
-========================== */
+
+/* =========================================================
+   LOCATION NOTICE
+========================================================= */
+
+.location-notice {
+
+  background:
+    var(--card-bg);
+
+  color:
+    var(--text-color);
+
+  border:
+    1px solid var(--card-border);
+
+  backdrop-filter:
+    blur(12px);
+
+  border-radius:
+    12px;
+
+  padding:
+    12px 16px;
+
+  margin:
+    15px 0;
+
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+
+/* =========================================================
+   LOCATION SUCCESS
+========================================================= */
+
+.location-success {
+
+  background:
+    var(--success-bg);
+
+  color:
+    var(--success-text);
+
+  border:
+    1px solid
+    rgba(0, 255, 128, 0.15);
+
+  padding:
+    12px 16px;
+
+  border-radius:
+    12px;
+
+  margin:
+    15px 0;
+
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+
+/* =========================================================
+   FADE ANIMATION
+========================================================= */
 
 .fade-in {
-  animation: fadeIn .7s ease;
+
+  animation:
+    fadeIn 0.7s ease;
 }
+
 
 @keyframes fadeIn {
 
   from {
+
     opacity: 0;
-    transform: translateY(20px);
+
+    transform:
+      translateY(20px);
+
   }
 
   to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
 }
 
-/* ==========================
-   Float Animation
-========================== */
+
+/* =========================================================
+   FLOAT ANIMATION
+========================================================= */
 
 .float {
-  animation: floating 5s ease-in-out infinite;
+
+  animation:
+    floating 5s ease-in-out infinite;
 }
+
 
 @keyframes floating {
 
   0% {
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
+
   }
 
   50% {
-    transform: translateY(-8px);
+
+    transform:
+      translateY(-8px);
+
   }
 
   100% {
-    transform: translateY(0);
-  }
 
+    transform:
+      translateY(0);
+
+  }
 }
 
-/* ==========================
-   Responsive
-========================== */
 
-@media (max-width:992px) {
+/* =========================================================
+   THEME TRANSITION
+========================================================= */
+
+html,
+body,
+#root,
+.app {
+
+  transition:
+    background 0.35s ease,
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
 
   #root {
-    padding: 18px;
+    padding: 0;
+  }
+
+  .container {
+    padding: 20px;
   }
 
   body {
@@ -209,39 +758,61 @@ body {
 
 }
 
-@media (max-width:768px) {
+
+@media (max-width: 768px) {
 
   #root {
-    align-items: flex-start;
-    padding: 16px;
+
+    align-items:
+      stretch;
+
+    padding: 0;
+  }
+
+  .container {
+
+    padding:
+      16px;
   }
 
   body {
-    font-size: 14px;
+
+    font-size:
+      14px;
   }
 
 }
 
-@media (max-width:480px) {
 
-  #root {
-    padding: 12px;
+@media (max-width: 480px) {
+
+  .container {
+
+    padding:
+      12px;
   }
 
   body {
-    font-size: 13px;
+
+    font-size:
+      13px;
   }
 
 }
 
-@media (max-width:360px) {
 
-  #root {
-    padding: 10px;
+@media (max-width: 360px) {
+
+  .container {
+
+    padding:
+      10px;
   }
 
   body {
-    font-size: 12px;
+
+    font-size:
+      12px;
   }
 
 }
