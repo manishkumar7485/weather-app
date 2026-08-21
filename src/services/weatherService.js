@@ -293,7 +293,7 @@ export const getWeatherData = async (city) => {
 
     const weather = weatherResponse.data;
     const hourlyForecast = await getHourlyWeather(city);
-    // console.log("Hourly data from service : ",hourlyForecast);
+    // console.log("Hourly data from service : ",weather);
 
     // Forecast
     const forecastResponse = await axios.get(

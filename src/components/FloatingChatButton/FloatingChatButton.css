@@ -5,30 +5,31 @@
 .floating-chat-btn {
   position: fixed;
   right: 20px;
-  bottom: 24px;
+  bottom: 10px;
 
-  width: 68px;
-  height: 68px;
+  width: 65px;
+  height: 65px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: none;
+  border: var(--card-border);
   border-radius: 50%;
 
   cursor: pointer;
 
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: #fff;
-
-  z-index: 99999;
+  /* background: linear-gradient(135deg, #032933, #0072ff);
+  color: #fff; */
+  background: var(--card-bg);
+  color: var(--text-color);
+  z-index: -1;
 
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 12px 30px rgba(0, 0, 100, 0.35),
     0 0 20px rgba(0, 198, 255, 0.35);
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.1s ease;
 
   animation: pulse 2s infinite;
 }
@@ -62,8 +63,8 @@
 
 /* Hide label completely */
 
-.chat-label {
-  display: none;
+.chat-label:hover {
+  display:-webkit-flex;
 }
 
 /* ===================================
@@ -84,7 +85,7 @@
 
   z-index: 99998;
 
-  animation: popup 0.35s ease;
+  animation: popup 0.75s ease;
 }
 
 /* ===================================

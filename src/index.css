@@ -1,9 +1,4 @@
 /* =========================================================
-   MyCityWeather - Global CSS
-========================================================= */
-
-
-/* =========================================================
    RESET
 ========================================================= */
 
@@ -104,9 +99,9 @@
   /* Page */
   --bg-gradient:
     linear-gradient(
-      135deg,
-      #0f172a 0%,
-      #1e293b 100%
+      120deg,
+      #021031 50%,
+      #20365a 50%
     );
 
   --bg-color: #020617;
@@ -229,7 +224,7 @@ body {
   color:
     var(--text-color);
 
-  min-height: 100vh;
+  min-height: 100%;
 
   width: 100%;
 
@@ -248,7 +243,7 @@ body {
 
 #root {
 
-  min-height: 100vh;
+  min-height: 100%;
 
   width: 100%;
 
@@ -267,8 +262,8 @@ body {
     var(--text-color);
 
   transition:
-    background 0.35s ease,
-    color 0.35s ease;
+    background 0.5ms ease,
+    color 1ms ease;
 }
 
 
@@ -427,7 +422,8 @@ button {
 .air-quality-card,
 .weather-details,
 .weather-chart,
-.ai-chat {
+.ai-chat,
+.floating-chat-btn {
 
   color:
     var(--text-color);
@@ -451,7 +447,7 @@ button {
 
   width: 100%;
 
-  min-height: 100vh;
+  min-height: 100%;
 
   background:
     transparent;
@@ -473,7 +469,7 @@ button {
 
   width: 100%;
 
-  max-width: 1400px;
+  max-width: 100%;
 
   margin: 0 auto;
 

@@ -1,19 +1,18 @@
-/* ==========================================
-   Loading Screen
-========================================== */
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
 
 .loading-screen {
   position: fixed;
-
   inset: 0;
 
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 
   overflow: hidden;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -34,9 +33,9 @@
 }
 
 
-/* ==========================================
-   Sun
-========================================== */
+/* =========================================================
+   SUN
+========================================================= */
 
 .loading-sun {
   position: absolute;
@@ -61,8 +60,12 @@
     0 0 40px rgba(255, 218, 80, 0.7),
     0 0 90px rgba(255, 218, 80, 0.35);
 
-  animation: sunPulse 4s ease-in-out infinite;
+  animation:
+    sunPulse 4s ease-in-out infinite;
+
+  z-index: 1;
 }
+
 
 @keyframes sunPulse {
 
@@ -74,112 +77,199 @@
   50% {
     transform: scale(1.06);
   }
-
 }
 
 
-/* ==========================================
-   Clouds
-========================================== */
+/* =========================================================
+   ANIMATED SVG CLOUDS
+========================================================= */
 
 .loading-cloud {
   position: absolute;
 
-  width: 150px;
-  height: 55px;
+  width: 280px;
+  height: 160px;
 
-  border-radius: 50px;
+  pointer-events: none;
+  user-select: none;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.65),
-      rgba(255, 255, 255, 0.25)
-    );
+  z-index: 2;
 
-  filter: blur(1px);
-
-  opacity: 0.45;
+  will-change: transform;
 }
 
 
-/* Cloud circles */
+.loading-cloud svg {
+  display: block;
 
-.loading-cloud::before,
-.loading-cloud::after {
-  content: "";
+  width: 100%;
+  height: 100%;
 
-  position: absolute;
+  overflow: visible;
 
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.5);
+  pointer-events: none;
 }
 
-.loading-cloud::before {
-  width: 70px;
-  height: 70px;
 
-  left: 20px;
-  bottom: 15px;
-}
-
-.loading-cloud::after {
-  width: 90px;
-  height: 90px;
-
-  right: 20px;
-  bottom: 10px;
-}
-
+/* =========================================================
+   CLOUD 1
+   LEFT → RIGHT
+========================================================= */
 
 .cloud-one {
-  left: -50px;
-  top: 20%;
+  top: 8%;
+  left: -120px;
 
   animation:
-    cloudMove 18s linear infinite;
+    cloudTravelOne 28s linear infinite;
 }
+
+
+/* =========================================================
+   CLOUD 2
+   RIGHT → LEFT
+========================================================= */
 
 .cloud-two {
-  left: -180px;
-  top: 55%;
-
-  transform: scale(0.75);
+  top: 38%;
+  right: -20px;
 
   animation:
-    cloudMove 24s linear infinite;
+    cloudTravelTwo 34s linear infinite;
 }
+
+
+/* =========================================================
+   CLOUD 3
+   LEFT → RIGHT
+========================================================= */
 
 .cloud-three {
-  left: -250px;
-  top: 78%;
-
-  transform: scale(0.6);
+  bottom: 5%;
+  left: -0px;
 
   animation:
-    cloudMove 28s linear infinite;
-}
-
-@keyframes cloudMove {
-
-  from {
-    transform:
-      translateX(0);
-  }
-
-  to {
-    transform:
-      translateX(120vw);
-  }
-
+    cloudTravelThree 42s linear infinite;
 }
 
 
-/* ==========================================
-   Rain
-========================================== */
+/* =========================================================
+   CLOUD 1 ANIMATION
+========================================================= */
+
+@keyframes cloudTravelOne {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translate3d(30vw, -8px, 0)
+      scale(1.02);
+  }
+
+  50% {
+    transform:
+      translate3d(60vw, 5px, 0)
+      scale(1.04);
+  }
+
+  75% {
+    transform:
+      translate3d(90vw, -5px, 0)
+      scale(1.02);
+  }
+
+  100% {
+    transform:
+      translate3d(125vw, 0, 0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   CLOUD 2 ANIMATION
+========================================================= */
+
+@keyframes cloudTravelTwo {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(0.95);
+  }
+
+  25% {
+    transform:
+      translate3d(-30vw, 8px, 0)
+      scale(0.98);
+  }
+
+  50% {
+    transform:
+      translate3d(-60vw, -5px, 0)
+      scale(1);
+  }
+
+  75% {
+    transform:
+      translate3d(-90vw, 5px, 0)
+      scale(0.98);
+  }
+
+  100% {
+    transform:
+      translate3d(-125vw, 0, 0)
+      scale(0.95);
+  }
+}
+
+
+/* =========================================================
+   CLOUD 3 ANIMATION
+========================================================= */
+
+@keyframes cloudTravelThree {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      scale(0.75);
+  }
+
+  25% {
+    transform:
+      translate3d(25vw, -5px, 0)
+      scale(0.78);
+  }
+
+  50% {
+    transform:
+      translate3d(55vw, 6px, 0)
+      scale(0.80);
+  }
+
+  75% {
+    transform:
+      translate3d(85vw, -4px, 0)
+      scale(0.78);
+  }
+
+  100% {
+    transform:
+      translate3d(125vw, 0, 0)
+      scale(0.75);
+  }
+}
+
+
+/* =========================================================
+   RAIN
+========================================================= */
 
 .rain {
   position: absolute;
@@ -187,55 +277,83 @@
   width: 3px;
   height: 35px;
 
+  border-radius: 50%;
+
   background:
     linear-gradient(
-      transparent,
-      rgba(255, 255, 255, 0.8)
+      180deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0.8) 100%
     );
 
   transform: rotate(20deg);
 
+  pointer-events: none;
+
+  z-index: 3;
+
   animation:
-    rainFall 1.3s linear infinite;
+    loadingRainFall 1.3s linear infinite;
+
+  will-change:
+    transform,
+    opacity;
 }
+
+
+/* =========================================================
+   RAIN POSITIONS
+========================================================= */
 
 .rain-one {
   left: 15%;
   top: -40px;
+
   animation-delay: 0s;
 }
 
 .rain-two {
   left: 30%;
   top: -80px;
+
   animation-delay: 0.4s;
 }
 
 .rain-three {
   left: 48%;
   top: -50px;
+
   animation-delay: 0.8s;
 }
 
 .rain-four {
   left: 67%;
   top: -100px;
+
   animation-delay: 0.2s;
 }
 
 .rain-five {
   left: 78%;
   top: -70px;
+
   animation-delay: 0.6s;
 }
 
 .rain-six {
   left: 90%;
   top: -40px;
+
   animation-delay: 1s;
 }
 
-@keyframes rainFall {
+
+/* =========================================================
+   RAIN ANIMATION
+========================================================= */
+
+@keyframes loadingRainFall {
 
   0% {
     transform:
@@ -246,7 +364,7 @@
   }
 
   20% {
-    opacity: 1;
+    opacity: 0.9;
   }
 
   100% {
@@ -256,21 +374,26 @@
 
     opacity: 0;
   }
-
 }
 
 
-/* ==========================================
-   Loading Card
-========================================== */
+/* =========================================================
+   LOADING CARD
+========================================================= */
 
 .loading-card {
-
   position: relative;
 
-  width: min(420px, calc(100vw - 40px));
+  z-index: 10;
 
-  padding: 32px 30px;
+  width:
+    min(
+      420px,
+      calc(100vw - 40px)
+    );
+
+  padding:
+    32px 30px;
 
   text-align: center;
 
@@ -287,18 +410,26 @@
     1px solid
     rgba(255, 255, 255, 0.30);
 
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
 
   box-shadow:
     0 25px 60px
     rgba(0, 0, 0, 0.25);
 
-  color: white;
+  color: #ffffff;
 
   animation:
     cardAppear 0.8s ease;
 }
+
+
+/* =========================================================
+   CARD APPEAR
+========================================================= */
 
 @keyframes cardAppear {
 
@@ -317,48 +448,76 @@
       translateY(0)
       scale(1);
   }
-
 }
 
 
-/* ==========================================
-   Weather Icon
-========================================== */
+/* =========================================================
+   WEATHER ICON
+========================================================= */
 
 .loading-weather-icon {
+  width: 110px;
+  height: 110px;
 
-  font-size: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  line-height: 1;
+  margin:
+    0 auto 10px;
 
-  margin-bottom: 20px;
+  color: #f9fd0b;
 
   animation:
-    weatherIcon 2s ease-in-out infinite;
+    weatherIconFloat 3s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 8px 18px
+      rgba(0, 0, 0, 0.20)
+    );
 }
 
-@keyframes weatherIcon {
 
-  0%,
-  100% {
+.loading-weather-icon svg {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+}
+
+
+/* =========================================================
+   WEATHER ICON ANIMATION
+========================================================= */
+
+@keyframes weatherIconFloat {
+
+  0% {
     transform:
-      translateY(0);
+      translateY(0)
+      rotate(0deg);
   }
 
   50% {
     transform:
-      translateY(-8px);
+      translateY(-10px)
+      rotate(-3deg);
   }
 
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
 }
 
 
-/* ==========================================
-   Title
-========================================== */
+/* =========================================================
+   TITLE
+========================================================= */
 
 .loading-card h1 {
-
   margin: 0;
 
   font-size: 30px;
@@ -369,13 +528,13 @@
 }
 
 
-/* ==========================================
-   Description
-========================================== */
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .loading-description {
-
-  margin: 18px 0 25px;
+  margin:
+    18px 0 25px;
 
   color:
     rgba(255, 255, 255, 0.9);
@@ -386,12 +545,11 @@
 }
 
 
-/* ==========================================
-   Progress Bar
-========================================== */
+/* =========================================================
+   PROGRESS
+========================================================= */
 
 .loading-progress {
-
   width: 100%;
 
   height: 12px;
@@ -404,12 +562,13 @@
     rgba(255, 255, 255, 0.25);
 
   box-shadow:
-    inset 0 1px 3px
+    inset
+    0 1px 3px
     rgba(0, 0, 0, 0.15);
 }
 
-.loading-progress-bar {
 
+.loading-progress-bar {
   height: 100%;
 
   border-radius: 20px;
@@ -430,12 +589,11 @@
 }
 
 
-/* ==========================================
-   Percentage
-========================================== */
+/* =========================================================
+   PERCENTAGE
+========================================================= */
 
 .loading-percentage {
-
   margin-top: 10px;
 
   font-size: 12px;
@@ -445,13 +603,13 @@
 }
 
 
-/* ==========================================
-   Status
-========================================== */
+/* =========================================================
+   STATUS
+========================================================= */
 
 .loading-status {
-
-  margin: 18px 0 0;
+  margin:
+    18px 0 0;
 
   font-size: 15px;
 
@@ -462,64 +620,167 @@
 }
 
 
-/* ==========================================
-   Tablet
-========================================== */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 768px) {
 
+  .loading-sun {
+    width: 85px;
+    height: 85px;
+
+    right: 5%;
+    top: 6%;
+  }
+
+
+  /* Clouds */
+
+  .loading-cloud {
+    width: 190px;
+    height: 110px;
+  }
+
+
+  .cloud-one {
+    top: 8%;
+    left: -230px;
+
+    animation-duration: 24s;
+  }
+
+
+  .cloud-two {
+    top: 40%;
+    right: -230px;
+
+    animation-duration: 29s;
+  }
+
+
+  .cloud-three {
+    bottom: 5%;
+    left: -200px;
+
+    animation-duration: 34s;
+  }
+
+
+  /* Card */
+
   .loading-card {
     width:
-      min(390px, calc(100vw - 32px));
+      min(
+        390px,
+        calc(100vw - 32px)
+      );
 
-    padding: 28px 24px;
+    padding:
+      28px 24px;
 
     border-radius: 24px;
   }
 
+
+  /* Icon */
+
   .loading-weather-icon {
-    font-size: 55px;
+    width: 85px;
+    height: 85px;
   }
+
 
   .loading-card h1 {
     font-size: 26px;
   }
 
+
+  /* Rain */
+
+  .rain {
+    width: 2px;
+    height: 30px;
+  }
 }
 
 
-/* ==========================================
-   Mobile
-========================================== */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 480px) {
 
   .loading-sun {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
 
     right: 5%;
-    top: 8%;
+    top: 7%;
   }
+
+
+  /* Clouds */
+
+  .loading-cloud {
+    width: 140px;
+    height: 85px;
+  }
+
+
+  .cloud-one {
+    top: 10%;
+    left: 170px;
+    animation-duration: 21s;
+  }
+
+
+  .cloud-two {
+    top: 42%;
+    right: -170px;
+    animation-duration: 25s;
+  }
+
+
+  .cloud-three {
+    bottom: 7%;
+    left: -150px;
+
+    animation-duration: 29s;
+  }
+
+
+  /* Card */
 
   .loading-card {
     width:
       calc(100vw - 28px);
 
-    padding: 25px 20px;
+    padding:
+      25px 20px;
 
     border-radius: 22px;
   }
 
-  .loading-weather-icon {
-    font-size: 48px;
 
-    margin-bottom: 15px;
+  /* Weather Icon */
+
+  .loading-weather-icon {
+    width: 70px;
+    height: 70px;
+
+    margin-bottom: 12px;
   }
+
+
+  /* Title */
 
   .loading-card h1 {
     font-size: 23px;
   }
+
+
+  /* Description */
 
   .loading-description {
     font-size: 13px;
@@ -528,37 +789,75 @@
       14px 0 20px;
   }
 
+
+  /* Progress */
+
   .loading-progress {
     height: 10px;
   }
+
+
+  /* Status */
 
   .loading-status {
     font-size: 14px;
   }
 
+
+  /* Rain */
+
+  .rain {
+    width: 2px;
+    height: 28px;
+  }
 }
 
 
-/* ==========================================
-   Small Phones
-========================================== */
+/* =========================================================
+   SMALL PHONES
+========================================================= */
 
 @media (max-width: 360px) {
 
   .loading-card {
-    padding: 22px 16px;
+    padding:
+      22px 16px;
   }
 
+
   .loading-weather-icon {
-    font-size: 42px;
+    width: 60px;
+    height: 60px;
   }
+
 
   .loading-card h1 {
     font-size: 21px;
   }
 
+
   .loading-description {
     font-size: 12px;
   }
 
+
+  .loading-status {
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .loading-sun,
+  .loading-cloud,
+  .rain,
+  .loading-card,
+  .loading-weather-icon {
+    animation: none !important;
+  }
 }
